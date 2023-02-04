@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c6071938cf14c9e8b8312109a7e671, type: 3}
-  m_Name: Carrot
+  m_Name: Daisy
   m_EditorClassIdentifier: 
-  title: Carrot
+  title: Daisy
   type: 0
-  category: 0
-  sprite: {fileID: 21300000, guid: b0492b66fc864814181e3fbbc190bbb9, type: 3}
+  category: 2
+  sprite: {fileID: 21300000, guid: e9ee7e47d9d05974aa17871d944f559f, type: 3}
