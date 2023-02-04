@@ -33,7 +33,6 @@ public class MainManager : MonoBehaviour
     private void SubscribeEvents()
     {
         objectiveController.OnObjectivesStarted += OnObjectivesStartedHandler;
-        objectiveController.OnObjectivesExhausted += OnObjectivesExhaustedHandler;
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
 
         inventoryController.OnItemCollected += OnItemCollectedHandler;
@@ -44,7 +43,6 @@ public class MainManager : MonoBehaviour
     private void UnsubscribeEvents()
     {
         objectiveController.OnObjectivesStarted -= OnObjectivesStartedHandler;
-        objectiveController.OnObjectivesExhausted -= OnObjectivesExhaustedHandler;
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
 
         inventoryController.OnItemCollected -= OnItemCollectedHandler;
@@ -59,11 +57,6 @@ public class MainManager : MonoBehaviour
         Debug.Log("OnObjectivesStartedHandler");
 
         objectiveController.SetPoisonRecipe(recipeController.PoisonRecipe());
-    }
-
-    private void OnObjectivesExhaustedHandler()
-    {
-        Debug.Log("OnObjectivesExhaustedHandler");
     }
 
     private void OnRequestNewRecipeHandler()

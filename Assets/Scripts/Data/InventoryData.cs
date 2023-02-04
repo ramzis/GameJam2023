@@ -4,8 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Data/Inventory", order = 1)]
 public class InventoryData : ScriptableObject
 {
-    public event Action<ItemData> OnItemAdded;
-
     public CategoryData[] currentCategories;
 
     [SerializeField]

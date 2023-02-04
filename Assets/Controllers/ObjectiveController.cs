@@ -8,8 +8,6 @@ public class ObjectiveController : MonoBehaviour
     public event Action OnRequestNewRecipe;
 
     public event Action OnObjectivesStarted;
-    public event Action OnObjectiveProgressed;
-    public event Action OnObjectivesExhausted;
 
     public event Action<int> OnLivesCountChanged;
 
