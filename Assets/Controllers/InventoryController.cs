@@ -5,20 +5,24 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     public event Action<ItemData, int> OnItemCollected;
+    public event Action<CategoryData[]> OnCategoriesUpdated;
 
     [SerializeField]
     private InventoryData inventoryData;
 
+    private ItemCollector itemCollector;
+
     private void OnEnable()
     {
-        FindObjectOfType<ItemCollector>(true).OnItemCollected +=
-            OnItemCollectedHandler;
+        itemCollector = FindObjectOfType<ItemCollector>(true);
+        itemCollector.OnItemCollected += OnItemCollectedHandler;
+        inventoryData.OnCategoriesUpdated += OnCategoriesUpdatedHandler;
     }
 
     private void OnDisable()
     {
-        FindObjectOfType<ItemCollector>(true).OnItemCollected -=
-            OnItemCollectedHandler;
+        itemCollector.OnItemCollected -= OnItemCollectedHandler;
+        inventoryData.OnCategoriesUpdated -= OnCategoriesUpdatedHandler;
     }
 
     private void OnItemCollectedHandler(ItemData item)
@@ -36,5 +40,15 @@ public class InventoryController : MonoBehaviour
     public HashSet<ItemData> GetIngredients()
     {
         return new HashSet<ItemData>(inventoryData.currentItems);
+    }
+
+    public void RequestNextCategories()
+    {
+        inventoryData.NextCategories();
+    }
+
+    private void OnCategoriesUpdatedHandler(CategoryData[] categories)
+    {
+        OnCategoriesUpdated?.Invoke(categories);
     }
 }

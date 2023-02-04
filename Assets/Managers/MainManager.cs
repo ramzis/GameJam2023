@@ -37,11 +37,13 @@ public class MainManager : MonoBehaviour
     {
         objectiveController.OnRequestPoisonRecipe += OnRequestPoisonRecipeHandler;
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
+        objectiveController.OnRequestNewCategories += OnRequestNewCategoriesHandler;
 
         witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
         witchController.OnWitchPraiseRecipe += OnWitchPraiseRecipeHandler;
 
         inventoryController.OnItemCollected += OnItemCollectedHandler;
+        inventoryController.OnCategoriesUpdated += OnCategoriesUpdatedHandler;
 
         inventoryView.OnItemRemovedAtSlot += OnItemRemovedAtSlotHandler;
     }
@@ -50,11 +52,13 @@ public class MainManager : MonoBehaviour
     {
         objectiveController.OnRequestPoisonRecipe -= OnRequestPoisonRecipeHandler;
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
+        objectiveController.OnRequestNewCategories -= OnRequestNewCategoriesHandler;
 
         witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
         witchController.OnWitchPraiseRecipe -= OnWitchPraiseRecipeHandler;
 
         inventoryController.OnItemCollected -= OnItemCollectedHandler;
+        inventoryController.OnCategoriesUpdated -= OnCategoriesUpdatedHandler;
 
         inventoryView.OnItemRemovedAtSlot -= OnItemRemovedAtSlotHandler;
     }
@@ -73,6 +77,11 @@ public class MainManager : MonoBehaviour
         witchController.ProvideCurrentRecipe(recipe);
     }
 
+    private void OnRequestNewCategoriesHandler()
+    {
+        inventoryController.RequestNextCategories();
+    }
+
     #endregion
 
     #region Inventory Controller event handlers
@@ -89,6 +98,11 @@ public class MainManager : MonoBehaviour
     private void OnItemRemovedAtSlotHandler(int slot)
     {
         inventoryController.RemoveItemAtSlot(slot);
+    }
+
+    private void OnCategoriesUpdatedHandler(CategoryData[] categories)
+    {
+        inventoryView.RegenerateInventory();
     }
 
     #endregion

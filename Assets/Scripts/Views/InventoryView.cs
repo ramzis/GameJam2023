@@ -34,9 +34,9 @@ public class InventoryView : MonoBehaviour
 
         slots.Clear();
 
-        for(int i=0; i<inventoryData.currentCategories.Length; i++)
+        for(int i=0; i<inventoryData.CurrentCategories().Length; i++)
         {
-            var category = inventoryData.currentCategories[i];
+            var category = inventoryData.CurrentCategories()[i];
 
             Debug.Log($"[InventoryView:RegenerateInventory] Adding slot for {category.category}");
 

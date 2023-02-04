@@ -7,13 +7,14 @@ public class ObjectiveController : MonoBehaviour
 {
     public event Action OnRequestNewRecipe;
     public event Action OnRequestPoisonRecipe;
+    public event Action OnRequestNewCategories;
 
     public event Action<int> OnLivesCountChanged;
 
     private RecipeData currentRecipe;
     private RecipeData poisonRecipe;
-    private int lives = 3;
-    private int recipeIndex = 1;
+    private int lives = 10;
+    private int level = 1;
 
     private bool lastRecipeValid;
     private bool potionProvided;
@@ -36,7 +37,7 @@ public class ObjectiveController : MonoBehaviour
 
     public bool EvaluateRecipe(HashSet<ItemData> ingredients)
     {
-        if (recipeIndex == 5)
+        if (level == 5)
         {
             poisonProvided = poisonRecipe.ingredients.TrueForAll((x) =>
             ingredients.Contains(x));
@@ -69,7 +70,7 @@ public class ObjectiveController : MonoBehaviour
             Debug.Log("[GameLoop]: Evaluating recipe");
 
             // All levels
-            if (recipeIndex < 5)
+            if (level < 5)
             {
                 if (lastRecipeValid)
                 {
@@ -99,7 +100,8 @@ public class ObjectiveController : MonoBehaviour
                 yield break;
             }
 
-            recipeIndex++;
+            OnRequestNewCategories?.Invoke();
+            level++;
         }
     }
 
