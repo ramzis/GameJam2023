@@ -66,7 +66,6 @@ public class MainManager : MonoBehaviour
 
     private void OnItemCollectedHandler(ItemData item, int insertedAt)
     {
-        Debug.Log(item.name);
         inventoryView.SetSlotThumbnail(insertedAt, item.thumbnail);
     }
 
