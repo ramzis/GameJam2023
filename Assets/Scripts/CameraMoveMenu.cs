@@ -46,7 +46,7 @@ public class CameraMoveMenu : MonoBehaviour
             }
             reachedXZEnd = true;
         }
-        else
+        else 
         {
             if (cameraTransform.position.x > minCordOffsetX)
             {
