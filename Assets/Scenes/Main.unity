@@ -373,6 +373,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa32b4174f0f04232a93e56db211a648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recipes:
+  - {fileID: 11400000, guid: 20ca8a7b9baec41edad1e3719214cf3e, type: 2}
+  - {fileID: 11400000, guid: 9dc492c1294944a1c80ea97c3f3e934d, type: 2}
+  - {fileID: 11400000, guid: 44abd7b84ce6b464cb1c96a6acdc9b09, type: 2}
+  - {fileID: 11400000, guid: ad0a05b698ae044108493f145d73f167, type: 2}
+  - {fileID: 11400000, guid: ec4623e93c0f84f9588c6b3105bdb0d0, type: 2}
 --- !u!114 &1598780339
 MonoBehaviour:
   m_ObjectHideFlags: 0
