@@ -45,22 +45,22 @@ public class MovePlayer : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             PlayerQuadMat.material.mainTexture = right;
             playerQuad.transform.localScale= new Vector3(4,4,1);
         }
 
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             PlayerQuadMat.material.mainTexture = right;
             playerQuad.transform.localScale = new Vector3(-4, 4, 1);
         }
-        else if(Input.GetKeyDown(KeyCode.S))
+        else if(Input.GetKey(KeyCode.S))
         {
             PlayerQuadMat.material.mainTexture = forward;
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W))
         {
             PlayerQuadMat.material.mainTexture = back;
         }
