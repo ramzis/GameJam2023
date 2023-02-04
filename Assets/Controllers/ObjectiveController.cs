@@ -36,7 +36,7 @@ public class ObjectiveController : MonoBehaviour
         poisonRecipe = recipe;
     }
 
-    public void EvaluateRecipe(HashSet<ItemData> ingredients)
+    public bool EvaluateRecipe(HashSet<ItemData> ingredients)
     {
         if (recipeIndex == 5)
         {
@@ -48,6 +48,8 @@ public class ObjectiveController : MonoBehaviour
             ingredients.Contains(x));
 
         potionProvided = true;
+
+        return lastRecipeValid;
     }
 
     private IEnumerator GameLoop()

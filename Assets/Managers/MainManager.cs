@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(RecipeController))]
 [RequireComponent(typeof(InventoryController))]
 [RequireComponent(typeof(ObjectiveController))]
+[RequireComponent(typeof(WitchController))]
 public class MainManager : MonoBehaviour
 {
     // 1. Receive recipe
@@ -12,6 +13,7 @@ public class MainManager : MonoBehaviour
     private RecipeController recipeController;
     private InventoryController inventoryController;
     private ObjectiveController objectiveController;
+    private WitchController witchController;
 
     [SerializeField]
     private InventoryView inventoryView;
@@ -28,12 +30,15 @@ public class MainManager : MonoBehaviour
         recipeController = GetComponent<RecipeController>();
         inventoryController = GetComponent<InventoryController>();
         objectiveController = GetComponent<ObjectiveController>();
+        witchController = GetComponent<WitchController>();
     }
 
     private void SubscribeEvents()
     {
         objectiveController.OnObjectivesStarted += OnObjectivesStartedHandler;
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
+
+        witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
 
         inventoryController.OnItemCollected += OnItemCollectedHandler;
 
@@ -44,6 +49,8 @@ public class MainManager : MonoBehaviour
     {
         objectiveController.OnObjectivesStarted -= OnObjectivesStartedHandler;
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
+
+        witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
 
         inventoryController.OnItemCollected -= OnItemCollectedHandler;
 
@@ -82,6 +89,18 @@ public class MainManager : MonoBehaviour
     private void OnItemRemovedAtSlotHandler(int slot)
     {
         inventoryController.RemoveItemAtSlot(slot);
+    }
+
+    #endregion
+
+
+    #region Witch Controller event handlers
+
+    private void OnRequestEvaluateRecipeHandler()
+    {
+        var ingredients = inventoryController.GetIngredients();
+        var correct = objectiveController.EvaluateRecipe(ingredients);
+        witchController.EvaluateRecipe(correct);
     }
 
     #endregion
