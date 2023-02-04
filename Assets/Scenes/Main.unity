@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8bd80971cdc4637a761c632e56b31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryData: {fileID: 11400000, guid: 23eeceff97af746978f14ad384152aa2, type: 2}
 --- !u!114 &1598780338
 MonoBehaviour:
   m_ObjectHideFlags: 0

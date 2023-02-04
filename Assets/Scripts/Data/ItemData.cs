@@ -23,6 +23,7 @@ public class ItemData : ScriptableObject
     {
         Root,
         Sap,
-        Mushroom
+        Mushroom,
+        Any,
     }
 }
