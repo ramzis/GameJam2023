@@ -154,8 +154,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.88
-  m_Center: {x: 0, y: -0.05, z: 0.45}
+  m_Radius: 2.23
+  m_Center: {x: 0.2, y: 0.58, z: 0.45}
 --- !u!1001 &4965884867147388076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,7 +225,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848267893544692726, guid: f1f37044b3289c14683d3985db91bfd4, type: 3}
       propertyPath: m_Name
-      value: Storas_Sap
+      value: Storas_Sap Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358717068278144474, guid: f1f37044b3289c14683d3985db91bfd4, type: 3}
+      propertyPath: m_Radius
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358717068278144474, guid: f1f37044b3289c14683d3985db91bfd4, type: 3}
+      propertyPath: m_Center.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358717068278144474, guid: f1f37044b3289c14683d3985db91bfd4, type: 3}
+      propertyPath: m_Center.y
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358717068278144474, guid: f1f37044b3289c14683d3985db91bfd4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1f37044b3289c14683d3985db91bfd4, type: 3}
