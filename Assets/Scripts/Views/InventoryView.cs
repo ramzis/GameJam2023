@@ -13,7 +13,7 @@ public class InventoryView : MonoBehaviour
 
     private List<Slot> slots;
 
-    private void OnEnable()
+    private void Awake()
     {
         slots = new List<Slot>();
         RegenerateInventory();
@@ -32,15 +32,15 @@ public class InventoryView : MonoBehaviour
 
         foreach (var category in inventoryData.currentCategories)
         {
-            Debug.Log($"Adding slot for {category.category}");
+            Debug.Log($"[InventoryView:RegenerateInventory] Adding slot for {category.category}");
 
             var clone = Instantiate(
-                slotPrefab,
+                slotPrefab.gameObject,
                 slotPrefab.transform.parent
             );
 
             var slot = clone.GetComponent<Slot>();
-            slot.ProvideData(category.slotPlaceholder);
+            //slot.ProvideData(category.slotPlaceholder);
             slot.SetState(Slot.State.Empty);
             slot.gameObject.SetActive(true);
             slots.Add(slot);
@@ -50,12 +50,13 @@ public class InventoryView : MonoBehaviour
     // Sets the visible item for a full slot
     public void SetSlotThumbnail(int slot, Sprite thumbnail)
     {
-        if (slots.Count >= slot)
+        if (slots.Count <= slot)
         {
             Debug.LogError("Atttempted to set slot to a too small inventory");
             return;
         }
 
         slots[slot].SetThumbnail(thumbnail);
+        slots[slot].SetState(Slot.State.Full);
     }
 }

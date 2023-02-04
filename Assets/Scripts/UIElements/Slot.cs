@@ -3,7 +3,9 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    [SerializeField]
     private Image placeholder;
+    [SerializeField]
     private Image thumbnail;
 
     private State state;
