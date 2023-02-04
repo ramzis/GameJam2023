@@ -108,6 +108,7 @@ public class Item : MonoBehaviour, IHarvestable
             case State.Pulled:
             if (harvesting)
             {
+                SoundManagerScript.PlaySound("success");
                 collector.Collect(data);
                 SetState(State.Empty);
             }
