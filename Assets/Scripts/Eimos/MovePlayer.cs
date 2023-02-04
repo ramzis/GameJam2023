@@ -9,9 +9,18 @@ public class MovePlayer : MonoBehaviour
     private Rigidbody rb;
     float newRotation = 0;
 
+    [SerializeField] Texture forward;
+    [SerializeField] Texture back;
+    [SerializeField] Texture right;
+
+    [SerializeField] GameObject playerQuad;
+    Renderer PlayerQuadMat;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        PlayerQuadMat = playerQuad.GetComponent<Renderer>();
     }
 
     void Update()
@@ -36,7 +45,27 @@ public class MovePlayer : MonoBehaviour
         }
 
 
-        
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            PlayerQuadMat.material.mainTexture = right;
+            playerQuad.transform.localScale= new Vector3(4,4,1);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            PlayerQuadMat.material.mainTexture = right;
+            playerQuad.transform.localScale = new Vector3(-4, 4, 1);
+        }
+        else if(Input.GetKeyDown(KeyCode.S))
+        {
+            PlayerQuadMat.material.mainTexture = forward;
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            PlayerQuadMat.material.mainTexture = back;
+        }
+
+
 
 
         if (Input.GetKeyDown(KeyCode.Q))
