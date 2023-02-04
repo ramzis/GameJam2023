@@ -40,13 +40,13 @@ public class ItemCollector : MonoBehaviour, ICollector
 
     public void RegisterHarvestable(IHarvestable harvestable)
     {
-        Debug.Log($"[ItemCollector:RegisterHarvestable] Registered {harvestable}");
+        //Debug.Log($"[ItemCollector:RegisterHarvestable] Registered {harvestable}");
         nearbyHarvestables.Add(harvestable);
     }
 
     public void UnregisterHarvestable(IHarvestable harvestable)
     {
-        Debug.Log($"[ItemCollector:RegisterHarvestable] Unregistered {harvestable}");
+       // Debug.Log($"[ItemCollector:RegisterHarvestable] Unregistered {harvestable}");
         nearbyHarvestables.Remove(harvestable);
     }
 

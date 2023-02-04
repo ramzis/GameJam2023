@@ -36,7 +36,8 @@ public class Item : MonoBehaviour, IHarvestable
         Available,
         Pulled,
         Held,
-        Empty
+        Empty,
+        Sap
     }
 
     public void OnTriggerEnter(Collider other)
@@ -115,9 +116,21 @@ public class Item : MonoBehaviour, IHarvestable
         {
             if (harvesting)
             {
-                //Debug.Log("here");
                 collector.Collect(data);
                 SetState(State.Empty);
+            }
+        }
+        else if (state == State.Sap)
+        {
+            if (this.harvesting)
+            {
+                Digging();
+                Invoke("Sap", 2);
+            }
+            else
+            {
+                StopDigging();
+                CancelInvoke("Sap");
             }
         }
     }
@@ -135,6 +148,11 @@ public class Item : MonoBehaviour, IHarvestable
     void DigUp() // invokes after 5 seconds if not canceled
     {
         SetState(State.Pulled);
+    }
+    void Sap()
+    {
+        StopDigging();
+        collector.Collect(data);
     }
 
 
