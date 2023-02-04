@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Whitecap Mushroom
   type: 0
-  category: 0
+  category: 2
   thumbnail: {fileID: 21300000, guid: b48afe826a0bcd5409c41b10cccfcbac, type: 3}
