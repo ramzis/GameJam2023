@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryView : MonoBehaviour
 {
@@ -40,7 +39,7 @@ public class InventoryView : MonoBehaviour
             );
 
             var slot = clone.GetComponent<Slot>();
-            //slot.ProvideData(category.slotPlaceholder);
+            slot.ProvideData(category.slotPlaceholder);
             slot.SetState(Slot.State.Empty);
             slot.gameObject.SetActive(true);
             slots.Add(slot);
