@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class InventoryView : MonoBehaviour
 {
     [SerializeField]
+    private InventoryData inventoryData;
+    [SerializeField]
     private Slot slotPrefab; // Used to init new slots by cloning
     [SerializeField]
     private List<CategoryData> categoryData;
@@ -14,15 +16,21 @@ public class InventoryView : MonoBehaviour
     private void OnEnable()
     {
         slots = new List<Slot>();
+        RegenerateInventory();
     }
 
     // RegenerateInventory should only be called only with an empty inventory.
     // It will adjust the visible slot count and reset them to be empty.
-    public void RegenerateInventory(CategoryData[] categories)
+    public void RegenerateInventory()
     {
+        foreach (var slot in slots)
+        {
+            Destroy(slot.gameObject);
+        }
+
         slots.Clear();
 
-        foreach(var category in categories)
+        foreach (var category in inventoryData.currentCategories)
         {
             var clone = Instantiate(
                 slotPrefab,
