@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a88e16e81865497896da09b3888eba0, type: 3}
   m_Name: Recipe_Level_2
   m_EditorClassIdentifier: 
-  title: Recipe
+  title: Tree Brew
   ingredients:
-  - {fileID: 11400000, guid: 5bfa35e705faa4474bdf0ea44ef0ed8e, type: 2}
+  - {fileID: 11400000, guid: 086e1f8561d8f604d962f88d7c64f2b6, type: 2}
+  - {fileID: 11400000, guid: 3a6e2eda02bce824db0e0bcf5f258c5d, type: 2}
   - {fileID: 11400000, guid: 305301cf922ba42f5b879598ae11b6ff, type: 2}
-  - {fileID: 11400000, guid: 826b60f2c38a64f21972bdab4412050e, type: 2}
