@@ -19,8 +19,22 @@ public class MovePlayer : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 movement = new Vector3(horizontal,0, vertical).normalized;
+        
+        Vector3 movement = new Vector3(horizontal, 0, vertical).normalized;
         rb.velocity = transform.TransformDirection(movement * speed);
+
+        if (Input.GetKey(KeyCode.W)
+            || Input.GetKey(KeyCode.A)
+            || Input.GetKey(KeyCode.S)
+            || Input.GetKey(KeyCode.D))
+        {
+            SoundManagerScript.PlaySound("walking");
+        }
+        else
+        {
+            SoundManagerScript.PlaySound("stop_walking");
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

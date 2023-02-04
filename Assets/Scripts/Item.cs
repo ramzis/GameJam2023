@@ -102,6 +102,7 @@ public class Item : MonoBehaviour, IHarvestable
         {
             if (harvesting)
             {
+                SoundManagerScript.PlaySound("diging");    
                 Digging();
                 Invoke("DigUp", 2);
             }
@@ -115,6 +116,7 @@ public class Item : MonoBehaviour, IHarvestable
         {
             if (harvesting)
             {
+                SoundManagerScript.PlaySound("success");
                 //Debug.Log("here");
                 collector.Collect(data);
                 SetState(State.Empty);
