@@ -6,8 +6,7 @@ using System.Collections;
 public class ObjectiveController : MonoBehaviour
 {
     public event Action OnRequestNewRecipe;
-
-    public event Action OnObjectivesStarted;
+    public event Action OnRequestPoisonRecipe;
 
     public event Action<int> OnLivesCountChanged;
 
@@ -23,7 +22,6 @@ public class ObjectiveController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GameLoop());
-        OnObjectivesStarted?.Invoke();
     }
 
     public void SetCurrentRecipe(RecipeData recipe)
@@ -54,7 +52,10 @@ public class ObjectiveController : MonoBehaviour
 
     private IEnumerator GameLoop()
     {
-        while(true)
+        Debug.Log("[GameLoop]: Requesting poison recipe");
+        OnRequestPoisonRecipe?.Invoke();
+
+        while (true)
         {
             Debug.Log("[GameLoop]: Requesting recipe");
             OnRequestNewRecipe?.Invoke();

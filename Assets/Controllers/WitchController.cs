@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 
 public class WitchController : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class WitchController : MonoBehaviour
 
     private Witch witch;
 
-    private void Start()
+    private void OnEnable()
     {
         witch = FindObjectOfType<Witch>();
         if (witch == null) throw new MissingComponentException("Witch required in scene!");
