@@ -35,7 +35,7 @@ public class MainManager : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        objectiveController.OnObjectivesStarted += OnObjectivesStartedHandler;
+        objectiveController.OnRequestPoisonRecipe += OnRequestPoisonRecipeHandler;
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
 
         witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
@@ -47,7 +47,7 @@ public class MainManager : MonoBehaviour
 
     private void UnsubscribeEvents()
     {
-        objectiveController.OnObjectivesStarted -= OnObjectivesStartedHandler;
+        objectiveController.OnRequestPoisonRecipe -= OnRequestPoisonRecipeHandler;
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
 
         witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
@@ -59,18 +59,16 @@ public class MainManager : MonoBehaviour
 
     #region Objective Handler event handlers
 
-    private void OnObjectivesStartedHandler()
+    private void OnRequestPoisonRecipeHandler()
     {
-        Debug.Log("OnObjectivesStartedHandler");
-
         objectiveController.SetPoisonRecipe(recipeController.PoisonRecipe());
     }
 
     private void OnRequestNewRecipeHandler()
     {
-        Debug.Log("OnRequestNewRecipeHandler");
-
-        objectiveController.SetCurrentRecipe(recipeController.NextRecipe());
+        var recipe = recipeController.NextRecipe();
+        objectiveController.SetCurrentRecipe(recipe);
+        witchController.ProvideCurrentRecipe(recipe);
     }
 
     #endregion
