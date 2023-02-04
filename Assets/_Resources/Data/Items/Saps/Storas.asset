@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c6071938cf14c9e8b8312109a7e671, type: 3}
-  m_Name: Berzas
+  m_Name: Storas
   m_EditorClassIdentifier: 
-  title: Berzas
+  title: Storas
   type: 0
   category: 1
-  thumbnail: {fileID: 21300000, guid: 462a734d3992a464f80d2ace38765fd8, type: 3}
+  thumbnail: {fileID: 21300000, guid: bf06739a725532a48a9de1d89edde34a, type: 3}
