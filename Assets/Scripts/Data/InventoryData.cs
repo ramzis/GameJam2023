@@ -45,4 +45,18 @@ public class InventoryData : ScriptableObject
         Debug.Log("[InventoryData:TryAddItem] No room in inventory");
         return -1;
     }
+
+    // Attempts to remove an item at the slot position
+    // Returns a boolean for success
+    public bool TryRemoveItem(int slot)
+    {
+        if (currentItems.Length <= slot)
+        {
+            Debug.LogError("Atttempted to set slot to a too small inventory");
+            return false;
+        }
+
+        currentItems[slot] = null;
+        return true;
+    }
 }

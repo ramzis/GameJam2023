@@ -1,14 +1,29 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    public event Action OnRemoveButtonPressed;
+
     [SerializeField]
     private Image placeholder;
     [SerializeField]
     private Image thumbnail;
+    [SerializeField]
+    private Button removeButton;
 
     private State state;
+
+    private void OnEnable()
+    {
+        removeButton.onClick.AddListener(OnRemoveButtonPressedHandler);
+    }
+
+    private void OnDisable()
+    {
+        removeButton.onClick.RemoveListener(OnRemoveButtonPressedHandler);
+    }
 
     public enum State
     {
@@ -44,5 +59,10 @@ public class Slot : MonoBehaviour
     public void SetThumbnail(Sprite thumbnail)
     {
         this.thumbnail.sprite = thumbnail;
+    }
+
+    private void OnRemoveButtonPressedHandler()
+    {
+        OnRemoveButtonPressed?.Invoke();
     }
 }

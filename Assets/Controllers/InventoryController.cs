@@ -26,4 +26,9 @@ public class InventoryController : MonoBehaviour
         var insertedAt = inventoryData.TryAddItem(item);
         if(insertedAt >= 0) OnItemCollected?.Invoke(item, insertedAt);
     }
+
+    public void RemoveItemAtSlot(int slot)
+    {
+        if(!inventoryData.TryRemoveItem(slot)) Debug.LogError("Failed to remove item");
+    }
 }

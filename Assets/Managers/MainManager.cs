@@ -35,6 +35,8 @@ public class MainManager : MonoBehaviour
         objectiveController.OnObjectivesStarted += OnObjectivesStartedHandler;
         objectiveController.OnObjectivesExhausted += OnObjectivesExhaustedHandler;
         inventoryController.OnItemCollected += OnItemCollectedHandler;
+
+        inventoryView.OnItemRemovedAtSlot += OnItemRemovedAtSlotHandler;
     }
 
     private void UnsubscribeEvents()
@@ -42,6 +44,8 @@ public class MainManager : MonoBehaviour
         objectiveController.OnObjectivesStarted -= OnObjectivesStartedHandler;
         objectiveController.OnObjectivesExhausted -= OnObjectivesExhaustedHandler;
         inventoryController.OnItemCollected -= OnItemCollectedHandler;
+
+        inventoryView.OnItemRemovedAtSlot -= OnItemRemovedAtSlotHandler;
     }
 
     #region Objective Handler event handlers
@@ -63,6 +67,15 @@ public class MainManager : MonoBehaviour
     private void OnItemCollectedHandler(ItemData item, int insertedAt)
     {
         inventoryView.SetSlotThumbnail(insertedAt, item.thumbnail);
+    }
+
+    #endregion
+
+    #region Inventory View event handlers
+
+    private void OnItemRemovedAtSlotHandler(int slot)
+    {
+        inventoryController.RemoveItemAtSlot(slot);
     }
 
     #endregion
