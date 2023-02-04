@@ -22,7 +22,7 @@ public class Item : MonoBehaviour, IHarvestable
     private SwayQuad quadAnimation;
 
     private ICollector collector;
-                
+
     // Is the Item being harvested?
     // Used to update UI and harvesting state.
     private bool harvesting;
@@ -33,6 +33,7 @@ public class Item : MonoBehaviour, IHarvestable
         Pulled,
         Held,
         Empty,
+        Tree,
         Sap
     }
 
@@ -74,6 +75,20 @@ public class Item : MonoBehaviour, IHarvestable
                 underground.SetActive(false);
                 pulled.SetActive(false);
                 hole.SetActive(true);
+                GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false; // cringe
+                GetComponent<SphereCollider>().center = new Vector3(0,-100,0); // yeet the trigger away.
+                break;
+
+            case State.Sap:
+                //underground.SetActive(false);
+                pulled.SetActive(true);
+                hole.SetActive(true);
+                break;
+
+            case State.Tree:
+                //underground.SetActive(false);
+                pulled.SetActive(false);
+                hole.SetActive(true);
                 break;
         }
     }
@@ -89,43 +104,61 @@ public class Item : MonoBehaviour, IHarvestable
     {
         this.harvesting = harvesting;
 
-        switch(state)
+        if(harvesting)
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = true;
+        else
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
+
+
+        switch (state)
         {
             case State.Available:
-            if (harvesting)
-            {
-                SoundManagerScript.PlaySound("diging");    
-                Digging();
-                Invoke("DigUp", 2);
-            }
-            else
-            {
-                StopDigging();
-                CancelInvoke("DigUp");
-            }
-            break;
+                if (harvesting)
+                {
+                    SoundManagerScript.PlaySound("diging");
+                    Digging();
+                    Invoke("DigUp", 2);
+                }
+                else
+                {
+                    StopDigging();
+                    CancelInvoke("DigUp");
+                }
+                break;
 
             case State.Pulled:
-            if (harvesting)
-            {
-                SoundManagerScript.PlaySound("success");
-                collector.Collect(data);
-                SetState(State.Empty);
-            }
-            break;
+                if (harvesting)
+                {
+                    SoundManagerScript.PlaySound("success");
+                    collector.Collect(data);
+                    SetState(State.Empty);
+                }
+                break;
 
-            case State.Sap: 
-            if (harvesting)
-            {
-                Digging();
-                Invoke("Sap", 2);
-            }
-            else
-            {
-                StopDigging();
-                CancelInvoke("Sap");
-            }
-            break;
+
+            case State.Tree:
+                if (harvesting)
+                {
+                    SoundManagerScript.PlaySound("diging");
+                    Digging();
+                    Invoke("Sap", 2);
+                }
+                else
+                {
+                    StopDigging();
+                    CancelInvoke("Sap");
+                }
+                break;
+
+            case State.Sap:
+                if (harvesting)
+                {
+                    SoundManagerScript.PlaySound("success");
+                    SetState(State.Tree);
+                    collector.Collect(data);
+                }
+
+                break;
         }
     }
 
@@ -137,22 +170,25 @@ public class Item : MonoBehaviour, IHarvestable
 
     private void StopDigging()
     {
+        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         quadAnimation.StopDigging();
     }
 
     private void DigUp() // invokes after 5 seconds if not canceled
     {
+        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         SetState(State.Pulled);
     }
 
     private void Sap()
     {
+        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         StopDigging();
-        collector.Collect(data);
+        SetState(State.Sap);
     }
 
     private void TryRegisterHarvestable(Collider other)
-    { 
+    {
         var collector = other.GetComponentInChildren<ICollector>();
         if (collector != null)
         {

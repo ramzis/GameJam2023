@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c6071938cf14c9e8b8312109a7e671, type: 3}
-  m_Name: Mushroom_Whitecap
+  m_Name: White_shroom
   m_EditorClassIdentifier: 
   title: Whitecap Mushroom
   type: 0
   category: 0
-  available: {fileID: 0}
-  extracted: {fileID: 0}
-  empty: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: b48afe826a0bcd5409c41b10cccfcbac, type: 3}
