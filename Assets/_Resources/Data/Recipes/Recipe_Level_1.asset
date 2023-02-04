@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Recipe
   ingredients:
-  - {fileID: 11400000, guid: 5bfa35e705faa4474bdf0ea44ef0ed8e, type: 2}
+  - {fileID: 11400000, guid: 3a6e2eda02bce824db0e0bcf5f258c5d, type: 2}
   - {fileID: 11400000, guid: 305301cf922ba42f5b879598ae11b6ff, type: 2}
   - {fileID: 11400000, guid: 826b60f2c38a64f21972bdab4412050e, type: 2}

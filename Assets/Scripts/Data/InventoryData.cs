@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Data/Inventory", order = 1)]
@@ -10,6 +11,12 @@ public class InventoryData : ScriptableObject
     private CategoryData[] inventoryCategories1;
     [SerializeField]
     private CategoryData[] inventoryCategories2;
+    [SerializeField]
+    private CategoryData[] inventoryCategories3;
+    [SerializeField]
+    private CategoryData[] inventoryCategories4;
+    [SerializeField]
+    private CategoryData[] inventoryCategories5;
 
     public ItemData[] currentItems;
 
