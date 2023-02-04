@@ -35,6 +35,8 @@ public class InventoryData : ScriptableObject
     // Returns true if the item was inserted.
     public bool TryAddItem(ItemData item)
     {
+        Debug.Log("[InventoryData:TryAddItem] Looking for room in inventory");
+
         // Search for an empty category slot and fill
         for (int i = 0; i < currentInventoryCategories.Length; i++)
         {
@@ -42,9 +44,11 @@ public class InventoryData : ScriptableObject
             if (currentItems[i] != null) continue;
 
             currentItems[i] = item;
+            Debug.Log("[InventoryData:TryAddItem] Added to inventory");
             return true;
         }
 
+        Debug.Log("[InventoryData:TryAddItem] No room in inventory");
         return false;
     }
 }
