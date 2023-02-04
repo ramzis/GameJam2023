@@ -52,13 +52,4 @@ public class MainManager : MonoBehaviour
     }
 
     #endregion
-
-    #region Item Collector event handlers
-
-    private void OnItemCollectedHandler(ItemData item)
-    {
-        inventoryController.CollectItem(item);
-    }
-
-    #endregion
 }
