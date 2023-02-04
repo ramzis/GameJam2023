@@ -867,6 +867,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 44abd7b84ce6b464cb1c96a6acdc9b09, type: 2}
   - {fileID: 11400000, guid: ad0a05b698ae044108493f145d73f167, type: 2}
   - {fileID: 11400000, guid: ec4623e93c0f84f9588c6b3105bdb0d0, type: 2}
+  poisonRecipe: {fileID: 11400000, guid: 860106a90084e45d1ab740cb1bafecc0, type: 2}
 --- !u!114 &1598780339
 MonoBehaviour:
   m_ObjectHideFlags: 0
