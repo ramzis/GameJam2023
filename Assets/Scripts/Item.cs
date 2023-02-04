@@ -18,15 +18,11 @@ public class Item : MonoBehaviour, IHarvestable
     [SerializeField]
     private GameObject hole;
 
-
     [SerializeField]
     private SwayQuad quadAnimation;
 
-
-
-    ICollector collector;
+    private ICollector collector;
                 
-
     // Is the Item being harvested?
     // Used to update UI and harvesting state.
     private bool harvesting;
@@ -36,7 +32,8 @@ public class Item : MonoBehaviour, IHarvestable
         Available,
         Pulled,
         Held,
-        Empty
+        Empty,
+        Sap
     }
 
     public void OnTriggerEnter(Collider other)
@@ -90,16 +87,11 @@ public class Item : MonoBehaviour, IHarvestable
 
     public void Harvest(bool harvesting)
     {
-        //Debug.Log(state);
-       // Debug.Log(harvesting);
         this.harvesting = harvesting;
-        //
-        // animation or smth
-        // collector.collect(itemdata);
-        //
-        //return data; // For now, harvest immediately, raise event later
-        if (state == State.Available)
+
+        switch(state)
         {
+            case State.Available:
             if (harvesting)
             {
                 SoundManagerScript.PlaySound("diging");    
@@ -111,35 +103,52 @@ public class Item : MonoBehaviour, IHarvestable
                 StopDigging();
                 CancelInvoke("DigUp");
             }
-        }
-        else if (state == State.Pulled)
-        {
+            break;
+
+            case State.Pulled:
             if (harvesting)
             {
-                SoundManagerScript.PlaySound("success");
-                //Debug.Log("here");
                 collector.Collect(data);
                 SetState(State.Empty);
             }
+            break;
+
+            case State.Sap: 
+            if (harvesting)
+            {
+                Digging();
+                Invoke("Sap", 2);
+            }
+            else
+            {
+                StopDigging();
+                CancelInvoke("Sap");
+            }
+            break;
         }
     }
 
 
-
-    void Digging() // digging animation
+    private void Digging() // digging animation
     {
         quadAnimation.Dig();
     }
-    void StopDigging()
+
+    private void StopDigging()
     {
         quadAnimation.StopDigging();
     }
-    void DigUp() // invokes after 5 seconds if not canceled
+
+    private void DigUp() // invokes after 5 seconds if not canceled
     {
         SetState(State.Pulled);
     }
 
-
+    private void Sap()
+    {
+        StopDigging();
+        collector.Collect(data);
+    }
 
     private void TryRegisterHarvestable(Collider other)
     { 
