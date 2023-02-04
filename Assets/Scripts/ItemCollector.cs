@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class ItemCollector : MonoBehaviour, ICollector
 {
@@ -13,12 +14,25 @@ public class ItemCollector : MonoBehaviour, ICollector
         nearbyHarvestables = new List<IHarvestable>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SetHarvesting(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            SetHarvesting(false);
+        }
+
+    }
+
     public void SetHarvesting(bool harvesting)
     {
         foreach(var harvestable in nearbyHarvestables)
         {
-            var itemData = harvestable.Harvest(harvesting);
-            OnItemCollected?.Invoke(itemData);
+            harvestable.Harvest(harvesting);
+           // OnItemCollected?.Invoke(itemData);
             return; // Just interact with the first one for now.
         }
     }
@@ -34,6 +48,11 @@ public class ItemCollector : MonoBehaviour, ICollector
         Debug.Log($"[ItemCollector:RegisterHarvestable] Unregistered {harvestable}");
         nearbyHarvestables.Remove(harvestable);
     }
+
+    public void Collect(ItemData itemData)
+    {
+        OnItemCollected?.Invoke(itemData);
+    }
 }
 
 public interface ICollector
@@ -41,10 +60,11 @@ public interface ICollector
     // Methods raised by IHarvestable when their triggers are activated
     public void RegisterHarvestable(IHarvestable harvestable);
     public void UnregisterHarvestable(IHarvestable harvestable);
+    public void Collect(ItemData itemData);
 }
 
 public interface IHarvestable
 {
     // Notify a harvestable to change its harvesting state
-    public ItemData Harvest(bool harvesting);
+    public void Harvest(bool harvesting);
 }

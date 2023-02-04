@@ -21,7 +21,6 @@ public class ItemData : ScriptableObject
     {
         Root,
         Sap,
-        Mushroom,
         Any,
     }
 }

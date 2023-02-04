@@ -18,6 +18,9 @@ public class Item : MonoBehaviour, IHarvestable
     [SerializeField]
     private GameObject hole;
 
+    ICollector collector;
+                
+
     // Is the Item being harvested?
     // Used to update UI and harvesting state.
     private bool harvesting;
@@ -79,16 +82,33 @@ public class Item : MonoBehaviour, IHarvestable
 
     #region Harvestables
 
-    public ItemData Harvest(bool harvesting)
+    public void Harvest(bool harvesting)
     {
+
         this.harvesting = harvesting;
-        return data; // For now, harvest immediately, raise event later
+        //
+        // animation or smth
+        // collector.collect(itemdata);
+        //
+        //return data; // For now, harvest immediately, raise event later
+        Invoke("DiggingAnimation", 5);
     }
 
-    private void TryRegisterHarvestable(Collider other)
+    void DiggingAnimation()
     {
+
+    }
+
+
+
+    private void TryRegisterHarvestable(Collider other)
+    { 
         var collector = other.GetComponentInChildren<ICollector>();
-        if (collector != null) collector.RegisterHarvestable(this);
+        if (collector != null)
+        {
+            this.collector = collector;
+            collector.RegisterHarvestable(this);
+        }
     }
 
     private void TryUnregisterHarvestable(Collider other)
