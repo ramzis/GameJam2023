@@ -8,14 +8,47 @@ public class Item : MonoBehaviour
     [SerializeField]
     private State state;
 
+    [SerializeField]
+    private GameObject underground;
+
+    [SerializeField]
+    private GameObject pulled;
+
+    [SerializeField]
+    private GameObject hole;
+
     public enum State
     {
         Available,
+        Pulled,
         Empty
     }
 
     public void SetState(State state)
     {
         this.state = state;
+
+        switch (this.state)
+        {
+            case State.Available:
+                underground.SetActive(true);
+                pulled.SetActive(false);
+                hole.SetActive(false);
+                break;
+
+            case State.Pulled:
+                underground.SetActive(false);
+                pulled.SetActive(true);
+                hole.SetActive(true);
+                break;
+
+            case State.Empty:
+                underground.SetActive(false);
+                pulled.SetActive(false);
+                hole.SetActive(true);
+                break;
+        }
+
+
     }
 }

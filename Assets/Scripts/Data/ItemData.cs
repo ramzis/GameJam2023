@@ -9,9 +9,7 @@ public class ItemData : ScriptableObject
     public Category category = Category.Root;
 
     [Header("Visuals")]
-    public Sprite available;
-    public Sprite extracted;
-    public Sprite empty;
+    public Sprite sprite; // thumbnail
 
     public enum Type
     {
