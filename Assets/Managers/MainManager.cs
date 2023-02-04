@@ -39,6 +39,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
 
         witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
+        witchController.OnWitchPraiseRecipe += OnWitchPraiseRecipeHandler;
 
         inventoryController.OnItemCollected += OnItemCollectedHandler;
 
@@ -51,6 +52,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
 
         witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
+        witchController.OnWitchPraiseRecipe -= OnWitchPraiseRecipeHandler;
 
         inventoryController.OnItemCollected -= OnItemCollectedHandler;
 
@@ -99,6 +101,12 @@ public class MainManager : MonoBehaviour
         var ingredients = inventoryController.GetIngredients();
         var correct = objectiveController.EvaluateRecipe(ingredients);
         witchController.EvaluateRecipe(correct);
+    }
+
+    private void OnWitchPraiseRecipeHandler()
+    {
+        var ingredients = inventoryController.GetIngredients();
+        witchController.BrewPotion(ingredients);
     }
 
     #endregion
