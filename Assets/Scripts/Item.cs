@@ -28,6 +28,16 @@ public class Item : MonoBehaviour, IHarvestable
         Empty
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        TryRegisterHarvestable(other);
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        TryUnregisterHarvestable(other);
+    }
+
     public void SetState(State state)
     {
         this.state = state;
@@ -59,9 +69,25 @@ public class Item : MonoBehaviour, IHarvestable
         return data.title;
     }
 
+    #region Harvestables
+
     public ItemData Harvest(bool harvesting)
     {
         this.harvesting = harvesting;
         return data; // For now, harvest immediately, raise event later
     }
+
+    private void TryRegisterHarvestable(Collider other)
+    {
+        var collector = other.GetComponentInChildren<ICollector>();
+        if (collector != null) collector.RegisterHarvestable(this);
+    }
+
+    private void TryUnregisterHarvestable(Collider other)
+    {
+        var collector = other.GetComponentInChildren<ICollector>();
+        if (collector != null) collector.UnregisterHarvestable(this);
+    }
+
+    #endregion
 }
