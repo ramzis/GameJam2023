@@ -32,6 +32,8 @@ public class InventoryView : MonoBehaviour
 
         foreach (var category in inventoryData.currentCategories)
         {
+            Debug.Log($"Adding slot for {category.category}");
+
             var clone = Instantiate(
                 slotPrefab,
                 slotPrefab.transform.parent
@@ -41,6 +43,7 @@ public class InventoryView : MonoBehaviour
             slot.ProvideData(category.slotPlaceholder);
             slot.SetState(Slot.State.Empty);
             slot.gameObject.SetActive(true);
+            slots.Add(slot);
         }
     }
 
