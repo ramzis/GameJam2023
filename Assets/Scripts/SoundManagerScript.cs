@@ -39,14 +39,12 @@ public class SoundManagerScript : MonoBehaviour
                 if (!audioSources[2].isPlaying)
                 {
                     audioSources[2].Play();
-                    Debug.Log("WALKING");
                 }
                 break;
             case "stop_walking":
                 if (audioSources[2].isPlaying)
                 {
                     audioSources[2].Stop();
-                    Debug.Log("STOP");
                 }
                 break;
         }
