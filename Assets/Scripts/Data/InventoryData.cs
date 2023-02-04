@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Data/Inventory", order = 1)]
 public class InventoryData : ScriptableObject
 {
-    public CategoryData[] currentCategories;
+    public event Action<CategoryData[]> OnCategoriesUpdated;
 
     [SerializeField]
     private CategoryData[] inventoryCategories1;
@@ -20,13 +20,25 @@ public class InventoryData : ScriptableObject
 
     public ItemData[] currentItems;
 
+    private int currentCategories;
+    private List<CategoryData[]> inventories;
+
     public void OnEnable()
     {
-        currentCategories = inventoryCategories1;
+        currentCategories = 0;
+
         currentItems = new ItemData[]
         {
             null, null, null, null, null
-        }; 
+        };
+
+        inventories = new List<CategoryData[]> {
+            inventoryCategories1,
+            inventoryCategories2,
+            inventoryCategories3,
+            inventoryCategories4,
+            inventoryCategories5,
+        };
     }
 
     // Attempts to find an empty matching category slot based on the current
@@ -37,9 +49,9 @@ public class InventoryData : ScriptableObject
         Debug.Log("[InventoryData:TryAddItem] Looking for room in inventory");
 
         // Search for an empty category slot and fill
-        for (int i = 0; i < currentCategories.Length; i++)
+        for (int i = 0; i < inventories[currentCategories].Length; i++)
         {
-            if (currentCategories[i].category != item.category) continue;
+            if (inventories[currentCategories][i].category != item.category) continue;
             if (currentItems[i] != null) continue;
 
             currentItems[i] = item;
@@ -63,5 +75,17 @@ public class InventoryData : ScriptableObject
 
         currentItems[slot] = null;
         return true;
+    }
+
+    public void NextCategories()
+    {
+        if (currentCategories + 1 >= inventories.Count) return;
+        currentCategories++;
+        OnCategoriesUpdated?.Invoke(inventories[currentCategories]);
+    }
+
+    public CategoryData[] CurrentCategories()
+    {
+        return inventories[currentCategories];
     }
 }
