@@ -17,7 +17,8 @@ public class ItemCollector : MonoBehaviour, ICollector
     {
         foreach(var harvestable in nearbyHarvestables)
         {
-            harvestable.Harvest(harvesting);
+            var itemData = harvestable.Harvest(harvesting);
+            OnItemCollected?.Invoke(itemData);
             return; // Just interact with the first one for now.
         }
     }
