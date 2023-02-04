@@ -6,6 +6,8 @@ public class RecipeController : MonoBehaviour
     private int currentRecipeIndex;
     [SerializeField]
     private List<RecipeData> recipes;
+    [SerializeField]
+    private RecipeData poisonRecipe;
 
     private void Start()
     {
@@ -25,5 +27,10 @@ public class RecipeController : MonoBehaviour
         if (currentRecipeIndex >= recipes.Count) return null;
 
         return recipes[currentRecipeIndex];
+    }
+
+    public RecipeData PoisonRecipe()
+    {
+        return poisonRecipe;
     }
 }
