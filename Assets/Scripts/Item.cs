@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IHarvestable
 {
     [SerializeField]
     private ItemData data;
@@ -16,6 +16,10 @@ public class Item : MonoBehaviour
 
     [SerializeField]
     private GameObject hole;
+
+    // Is the Item being harvested?
+    // Used to update UI and harvesting state.
+    private bool harvesting;
 
     public enum State
     {
@@ -48,7 +52,16 @@ public class Item : MonoBehaviour
                 hole.SetActive(true);
                 break;
         }
+    }
 
+    public string GetTitle()
+    {
+        return data.title;
+    }
 
+    public ItemData Harvest(bool harvesting)
+    {
+        this.harvesting = harvesting;
+        return data; // For now, harvest immediately, raise event later
     }
 }
