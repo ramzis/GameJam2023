@@ -6,6 +6,7 @@ using UnityEngine;
 public class Witch : MonoBehaviour, IInteractable
 {
     public event Action OnRequestEvaluateRecipe;
+    public event Action OnWitchPraiseRecipe;
 
     private RecipeData currentRecipe;
 
@@ -71,6 +72,8 @@ public class Witch : MonoBehaviour, IInteractable
         var text = "WITCH: You did well...this time!";
 
         Debug.Log(text);
+
+        OnWitchPraiseRecipe?.Invoke();
 
         yield return null;
     }
