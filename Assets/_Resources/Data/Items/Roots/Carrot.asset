@@ -15,4 +15,4 @@ MonoBehaviour:
   title: Carrot
   type: 0
   category: 0
-  sprite: {fileID: 21300000, guid: b0492b66fc864814181e3fbbc190bbb9, type: 3}
+  thumbnail: {fileID: 21300000, guid: b0492b66fc864814181e3fbbc190bbb9, type: 3}

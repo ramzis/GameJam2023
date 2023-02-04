@@ -15,4 +15,4 @@ MonoBehaviour:
   title: Daisy
   type: 0
   category: 2
-  sprite: {fileID: 21300000, guid: e9ee7e47d9d05974aa17871d944f559f, type: 3}
+  thumbnail: {fileID: 21300000, guid: 070f1406926bb9040aabb6cb2b3f05b4, type: 3}
