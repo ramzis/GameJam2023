@@ -18,6 +18,12 @@ public class Item : MonoBehaviour, IHarvestable
     [SerializeField]
     private GameObject hole;
 
+
+    [SerializeField]
+    private SwayQuad quadAnimation;
+
+
+
     ICollector collector;
                 
 
@@ -84,19 +90,51 @@ public class Item : MonoBehaviour, IHarvestable
 
     public void Harvest(bool harvesting)
     {
-
+        //Debug.Log(state);
+       // Debug.Log(harvesting);
         this.harvesting = harvesting;
         //
         // animation or smth
         // collector.collect(itemdata);
         //
         //return data; // For now, harvest immediately, raise event later
-        Invoke("DiggingAnimation", 5);
+        if (state == State.Available)
+        {
+            if (harvesting)
+            {
+                Digging();
+                Invoke("DigUp", 2);
+            }
+            else
+            {
+                StopDigging();
+                CancelInvoke("DigUp");
+            }
+        }
+        else if (state == State.Pulled)
+        {
+            if (harvesting)
+            {
+                //Debug.Log("here");
+                collector.Collect(data);
+                SetState(State.Empty);
+            }
+        }
     }
 
-    void DiggingAnimation()
-    {
 
+
+    void Digging() // digging animation
+    {
+        quadAnimation.Dig();
+    }
+    void StopDigging()
+    {
+        quadAnimation.StopDigging();
+    }
+    void DigUp() // invokes after 5 seconds if not canceled
+    {
+        SetState(State.Pulled);
     }
 
 

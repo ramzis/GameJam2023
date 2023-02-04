@@ -29,6 +29,7 @@ public class ItemCollector : MonoBehaviour, ICollector
 
     public void SetHarvesting(bool harvesting)
     {
+        
         foreach(var harvestable in nearbyHarvestables)
         {
             harvestable.Harvest(harvesting);

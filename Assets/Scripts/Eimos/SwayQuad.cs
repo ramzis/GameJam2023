@@ -10,6 +10,8 @@ public class SwayQuad : MonoBehaviour
     Vector3[] vertices;
 
     Vector3[] originalV;
+    float timeFactor = 1f;
+    float distortion = 0.05f;
     void Start()
     {
         mesh = meshFilter.mesh;
@@ -28,7 +30,7 @@ public class SwayQuad : MonoBehaviour
         for (var i = 2; i < vertices.Length; i++)
         {
 
-            vertices[i] = new Vector3(originalV[i].x +Mathf.Sin(Time.time)*0.05f, originalV[i].y + Mathf.Cos(Time.time) * 0.05f, originalV[i].z);
+            vertices[i] = new Vector3(originalV[i].x +Mathf.Sin(Time.time* timeFactor) * distortion, originalV[i].y + Mathf.Cos(Time.time* timeFactor) * distortion, originalV[i].z);
         }
 
         //// assign the local vertices array into the vertices array of the Mesh.
@@ -36,6 +38,16 @@ public class SwayQuad : MonoBehaviour
         mesh.RecalculateBounds();
     }
 
+    public void Dig()
+    {
+        timeFactor = 10f;
+        distortion = 0.2f;
+    }
+    public void StopDigging()
+    {
+        timeFactor = 1f;
+        distortion = 0.05f;
+    }
 
     public void moveShake()
     {
