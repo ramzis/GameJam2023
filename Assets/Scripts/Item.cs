@@ -26,6 +26,7 @@ public class Item : MonoBehaviour, IHarvestable
     {
         Available,
         Pulled,
+        Held,
         Empty
     }
 
@@ -55,6 +56,12 @@ public class Item : MonoBehaviour, IHarvestable
                 underground.SetActive(false);
                 pulled.SetActive(true);
                 hole.SetActive(true);
+                break;
+
+            case State.Held:
+                underground.SetActive(false);
+                pulled.SetActive(true);
+                hole.SetActive(false);
                 break;
 
             case State.Empty:
