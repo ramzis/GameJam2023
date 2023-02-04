@@ -13,6 +13,9 @@ public class MainManager : MonoBehaviour
     private InventoryController inventoryController;
     private ObjectiveController objectiveController;
 
+    [SerializeField]
+    private InventoryView inventoryView;
+
     private void Awake()
     {
         ResolveControllers();
@@ -31,12 +34,14 @@ public class MainManager : MonoBehaviour
     {
         objectiveController.OnObjectivesStarted += OnObjectivesStartedHandler;
         objectiveController.OnObjectivesExhausted += OnObjectivesExhaustedHandler;
+        inventoryController.OnItemCollected += OnItemCollectedHandler;
     }
 
     private void UnsubscribeEvents()
     {
         objectiveController.OnObjectivesStarted -= OnObjectivesStartedHandler;
         objectiveController.OnObjectivesExhausted -= OnObjectivesExhaustedHandler;
+        inventoryController.OnItemCollected -= OnItemCollectedHandler;
     }
 
     #region Objective Handler event handlers
@@ -49,6 +54,15 @@ public class MainManager : MonoBehaviour
     private void OnObjectivesExhaustedHandler()
     {
         Debug.Log("OnObjectivesExhaustedHandler");
+    }
+
+    #endregion
+
+    #region Inventory Controller event handlers
+
+    private void OnItemCollectedHandler(ItemData item, int insertedAt)
+    {
+        inventoryView.SetSlotThumbnail(insertedAt, item.thumbnail);
     }
 
     #endregion

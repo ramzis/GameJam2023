@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
+    public event Action<ItemData, int> OnItemCollected;
+
     [SerializeField]
     private InventoryData inventoryData;
 
@@ -20,6 +23,7 @@ public class InventoryController : MonoBehaviour
     private void OnItemCollectedHandler(ItemData item)
     {
         Debug.Log("[InventoryController:CollectItem] Collected item");
-        inventoryData.TryAddItem(item);
+        var insertedAt = inventoryData.TryAddItem(item);
+        if(insertedAt >= 0) OnItemCollected?.Invoke(item, insertedAt);
     }
 }

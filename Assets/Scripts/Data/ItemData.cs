@@ -9,7 +9,7 @@ public class ItemData : ScriptableObject
     public Category category = Category.Root;
 
     [Header("Visuals")]
-    public Sprite sprite; // thumbnail
+    public Sprite thumbnail;
 
     public enum Type
     {

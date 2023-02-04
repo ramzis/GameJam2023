@@ -1,29 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Data/Inventory", order = 1)]
 public class InventoryData : ScriptableObject
 {
-    public ItemData.Category[] currentInventoryCategories;
+    public event Action<ItemData> OnItemAdded;
 
-    private ItemData.Category[] inventoryCategories1 = new ItemData.Category[] {
-        ItemData.Category.Root,
-        ItemData.Category.Sap,
-        ItemData.Category.Any,
-    };
+    public CategoryData[] currentCategories;
 
-    private ItemData.Category[] inventoryCategories2 = new ItemData.Category[] {
-        ItemData.Category.Root,
-        ItemData.Category.Root,
-        ItemData.Category.Sap,
-        ItemData.Category.Any,
-    };
+    [SerializeField]
+    private CategoryData[] inventoryCategories1;
+    [SerializeField]
+    private CategoryData[] inventoryCategories2;
 
     public ItemData[] currentItems;
 
     public void OnEnable()
     {
-        currentInventoryCategories = inventoryCategories1;
+        currentCategories = inventoryCategories1;
         currentItems = new ItemData[]
         {
             null, null, null, null, null
@@ -32,23 +26,23 @@ public class InventoryData : ScriptableObject
 
     // Attempts to find an empty matching category slot based on the current
     // inventory type and insert the item.
-    // Returns true if the item was inserted.
-    public bool TryAddItem(ItemData item)
+    // Returns >0 if the item was inserted into that position, else -1.
+    public int TryAddItem(ItemData item)
     {
         Debug.Log("[InventoryData:TryAddItem] Looking for room in inventory");
 
         // Search for an empty category slot and fill
-        for (int i = 0; i < currentInventoryCategories.Length; i++)
+        for (int i = 0; i < currentCategories.Length; i++)
         {
-            if (currentInventoryCategories[i] != item.category) continue;
+            if (currentCategories[i].category != item.category) continue;
             if (currentItems[i] != null) continue;
 
             currentItems[i] = item;
             Debug.Log("[InventoryData:TryAddItem] Added to inventory");
-            return true;
+            return i;
         }
 
         Debug.Log("[InventoryData:TryAddItem] No room in inventory");
-        return false;
+        return -1;
     }
 }
