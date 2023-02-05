@@ -10,6 +10,8 @@ public class ObjectiveController : MonoBehaviour
     public event Action OnRequestNewCategories;
     public event Action<int> OnRequestIntroDialog;
     public event Action<int> OnRequestFirstIngredientDialog;
+    public event Action<int> OnRequestCorrectIngredientDialog;
+    public event Action<int> OnRequestWrongIngredientDialog;
 
     public event Action<int> OnLivesCountChanged;
 
@@ -92,11 +94,14 @@ public class ObjectiveController : MonoBehaviour
             {
                 if (lastRecipeValid)
                 {
+                    Debug.Log("OnRequestCorrectIngredientDialog Invoke");
+                    OnRequestCorrectIngredientDialog?.Invoke(level-1);
                     yield return SleepCutscene();
                 }
 
                 else
                 {
+                    OnRequestWrongIngredientDialog?.Invoke(level-1);
                     --lives;
                     OnLivesCountChanged?.Invoke(lives);
                     if (lives < 1)

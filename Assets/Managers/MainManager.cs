@@ -45,6 +45,8 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewCategories += OnRequestNewCategoriesHandler;
         objectiveController.OnRequestIntroDialog += OnRequestIntroDialogHandler;
         objectiveController.OnRequestFirstIngredientDialog += OnRequestFirstIngredientDialogHandler;
+        objectiveController.OnRequestCorrectIngredientDialog += OnRequestCorrectIngredientDialogHandler;
+        objectiveController.OnRequestWrongIngredientDialog += OnRequestWrongIngredientDialogHandler;
         objectiveController.OnLivesCountChanged += OnLivesCountChangedHandler;
 
         witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
@@ -66,6 +68,8 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewCategories -= OnRequestNewCategoriesHandler;
         objectiveController.OnRequestIntroDialog -= OnRequestIntroDialogHandler;
         objectiveController.OnRequestFirstIngredientDialog -= OnRequestFirstIngredientDialogHandler;
+        objectiveController.OnRequestCorrectIngredientDialog -= OnRequestCorrectIngredientDialogHandler;
+        objectiveController.OnRequestWrongIngredientDialog -= OnRequestWrongIngredientDialogHandler;
         objectiveController.OnLivesCountChanged -= OnLivesCountChangedHandler;
 
         witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
@@ -113,8 +117,18 @@ public class MainManager : MonoBehaviour
 
     private void OnRequestFirstIngredientDialogHandler(int level)
     {
-        Debug.Log("OnRequestFirstIngredientDialogHandler");
         textBoxController.SayFirstIngredientDialog(level);
+    }
+
+    private void OnRequestCorrectIngredientDialogHandler(int level)
+    {
+        Debug.Log("OnRequestCorrectIngredientDialogHandler");
+        textBoxController.SayCorrectIngredientDialog(level);
+    }
+
+    private void OnRequestWrongIngredientDialogHandler(int level)
+    {
+        textBoxController.SayWrongIngredientDialog(level);
     }
 
     #endregion

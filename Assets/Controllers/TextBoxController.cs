@@ -28,8 +28,19 @@ public class TextBoxController : MonoBehaviour
 
     public void SayFirstIngredientDialog(int level)
     {
-        Debug.Log("SayFirstIngredientDialog");
         StartText(dialogData[level].firstIngredientLines);
+    }
+
+    public void SayCorrectIngredientDialog(int level)
+    {
+        Debug.Log("SayCorrectIngredientDialog");
+        StartText(dialogData[level].correctIngredientLines);
+    }
+
+    public void SayWrongIngredientDialog(int level)
+    {
+        Debug.Log("SayWrongIngredientDialog");
+        StartText(dialogData[level].wrongIngredientLines);
     }
 
     public void StartText(List<Line> lines)
