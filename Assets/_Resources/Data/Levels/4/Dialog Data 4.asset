@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: Dialog Data 4
   m_EditorClassIdentifier: 
   title: Dialog
-  introLines: []
-  firstIngredientLines:
-  - Author: 1
-    Text: 'Oh, my! You have a carrot! Gimme, gimme! '
+  introLines:
   - Author: 0
-    Text: 'Come here or I will end you! '
-  - Author: 1
-    Text: "Oh\u2026 You\u2019d better go and gain her trust! And later\u2026"
-  - Author: 1
-    Text: I will help you kill her. ;)
+    Text: 'Oh - la - la, what a day! I feel kinda dizzy today. '
+  - Author: 0
+    Text: I need to get on feet before Kids Kidnapping Festival today.
+  - Author: 0
+    Text: Get me some proteins! Get them to me, even if they try to wringle away.
+  - Author: 0
+    Text: "For the second ingredient I will take something red and with a lot of
+      calcium. But let\u2019s make it vegan now. \U0001F642"
+  - Author: 0
+    Text: "And then - something from the one who\u2019s naked and ugly."
+  firstIngredientLines: []
   correctIngredientLines:
   - Author: 0
     Text: "Oh my, yummy, yummy. Good job! You can go rest now! 5 more days and you

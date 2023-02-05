@@ -26,6 +26,14 @@ MonoBehaviour:
       will let you go\u2026 "
   - Author: 0
     Text: 'If not - death awaits you, little pig! '
+  - Author: 0
+    Text: 'My first order will be simple. But as I am the poet of these woods, I
+      will give it in a riddle:'
+  - Author: 0
+    Text: "Summer came and Olaf melted\u2026 HE\u2019S DEAD, HAHAHAHA!"
+  - Author: 0
+    Text: "But\u2026 one part of his body is still here\u2026 Find it and bring it
+      to me! GO!"
   firstIngredientLines:
   - Author: 1
     Text: 'Oh, my! You have a carrot! Gimme, gimme! '

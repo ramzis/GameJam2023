@@ -15,26 +15,19 @@ MonoBehaviour:
   title: Dialog
   introLines:
   - Author: 0
-    Text: 'Hello there, little piggy. '
+    Text: "Oh my you little sleepy head! Don\u2019t you know that I\u2019m thirsty???"
   - Author: 0
-    Text: "My full time bartender is out on holidays for 5 days so I\u2019m super
-      thirsty."
+    Text: "Go to work\u2026 Here\u2019s my order for my drink:"
   - Author: 0
-    Text: ' IF YOU KNOW WHAT I MEAN.'
+    Text: "First one is Olaf\u2019s nose\u2026 Yep\u2026 He melted again."
   - Author: 0
-    Text: " Now you will be my servant! If you behave and make good cocktails - I
-      will let you go\u2026 "
+    Text: "The second one is pure, serene\u2026 Pretty.. well, you know!"
   - Author: 0
-    Text: 'If not - death awaits you, little pig! '
-  firstIngredientLines:
-  - Author: 1
-    Text: 'Oh, my! You have a carrot! Gimme, gimme! '
+    Text: "The third ingredient is\u2026 hmm\u2026 well it\u2019s\u2026 how to say
+      it\u2026 It's kinda naked?"
   - Author: 0
-    Text: 'Come here or I will end you! '
-  - Author: 1
-    Text: "Oh\u2026 You\u2019d better go and gain her trust! And later\u2026"
-  - Author: 1
-    Text: I will help you kill her. ;)
+    Text: Okay. Got it? Go, you little..!
+  firstIngredientLines: []
   correctIngredientLines:
   - Author: 0
     Text: "Oh my, yummy, yummy. Good job! You can go rest now! 5 more days and you
