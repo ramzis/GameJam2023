@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(RecipeController))]
 [RequireComponent(typeof(InventoryController))]
@@ -95,6 +96,7 @@ public class MainManager : MonoBehaviour
     {
         var witchRender = FindObjectOfType<RenderWitch>();
         witchRender.SetMoodImg(lives);
+        FindObjectOfType<TextBoxView>().SwitchSpeaker(Author.Witch, lives);
     }
 
     private void OnRequestNewRecipeHandler()
