@@ -22,14 +22,12 @@ public class TextBoxView : MonoBehaviour
 
     public void Show()
     {
-        Debug.Log("Showing");
         AnimateImageIn();
         AnimatePanelIn();
     }
 
     public void Hide()
     {
-        Debug.Log("Hiding");
         AnimateImageOut();
         AnimatePanelOut();
     }
