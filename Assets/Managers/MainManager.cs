@@ -44,6 +44,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
         objectiveController.OnRequestNewCategories += OnRequestNewCategoriesHandler;
         objectiveController.OnRequestIntroDialog += OnRequestIntroDialogHandler;
+        objectiveController.OnLivesCountChanged += OnLivesCountChangedHandler;
 
         witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
         witchController.OnWitchPraiseRecipe += OnWitchPraiseRecipeHandler;
@@ -63,6 +64,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
         objectiveController.OnRequestNewCategories -= OnRequestNewCategoriesHandler;
         objectiveController.OnRequestIntroDialog -= OnRequestIntroDialogHandler;
+        objectiveController.OnLivesCountChanged -= OnLivesCountChangedHandler;
 
         witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
         witchController.OnWitchPraiseRecipe -= OnWitchPraiseRecipeHandler;
@@ -77,6 +79,12 @@ public class MainManager : MonoBehaviour
     }
 
     #region Objective Handler event handlers
+
+    private void OnLivesCountChangedHandler(int lives)
+    {
+        var witchRender = FindObjectOfType<RenderWitch>();
+        witchRender.SetMoodImg(lives);
+    }
 
     private void OnRequestPoisonRecipeHandler()
     {

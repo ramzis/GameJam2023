@@ -26,19 +26,19 @@ public class RenderWitch : MonoBehaviour
 
 
     // Update is called once per frame
-    public void SetMoodImg(State state)
+    public void SetMoodImg(int lives)
     {
-        switch(state)
+        switch(lives)
         {
-            case State.Happy:
+            case 3:
                 QuadMat.material.mainTexture = happy;
             break;
 
-            case State.Mid:
+            case 2:
                 QuadMat.material.mainTexture = mid;
                 break;
 
-            case State.Angry:
+            case 1:
                 QuadMat.material.mainTexture = angy;
                 break;
         }
