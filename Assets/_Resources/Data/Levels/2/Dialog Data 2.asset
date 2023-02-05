@@ -16,9 +16,8 @@ MonoBehaviour:
   introLines:
   - Author: 0
     Text: 'Hello there, little piggy. '
-  - Author: 0
-    Text: "My full time bartender is out on holidays for 5 days so I\u2019m super
-      thirsty."
+  - Author: 1
+    Text: Wazaaaaaa
   - Author: 0
     Text: ' IF YOU KNOW WHAT I MEAN.'
   - Author: 0
@@ -26,6 +25,8 @@ MonoBehaviour:
       will let you go\u2026 "
   - Author: 0
     Text: 'If not - death awaits you, little pig! '
+  - Author: 1
+    Text: Wazaaaaaap
   firstIngredientLines:
   - Author: 1
     Text: 'Oh, my! You have a carrot! Gimme, gimme! '
