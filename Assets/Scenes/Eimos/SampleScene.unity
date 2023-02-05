@@ -1476,6 +1476,8 @@ GameObject:
   - component: {fileID: 96884727}
   - component: {fileID: 96884726}
   - component: {fileID: 96884725}
+  - component: {fileID: 96884728}
+  - component: {fileID: 96884729}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Untagged
@@ -1495,7 +1497,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.29
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.64, y: 0, z: 0}
 --- !u!114 &96884726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1516,7 +1518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96884724}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0.74, y: 0, z: -5.51}
+  m_LocalPosition: {x: -0.78, y: 0, z: -7.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1524,6 +1526,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!114 &96884728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96884724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7aa8d6c475799429df5dd49665d0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  happy: {fileID: 2800000, guid: b9924432a1a82b9409229273fb0a1d33, type: 3}
+  mid: {fileID: 2800000, guid: f4d78296c4f14c04691333c1620f8a65, type: 3}
+  angy: {fileID: 2800000, guid: e85a4e95def761a4780326cf0029b082, type: 3}
+  Quad: {fileID: 2107826745}
+--- !u!114 &96884729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96884724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa98d6cda4d141e4bf3d7474e3ba5b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &98822088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6396412056336571610, guid: b6332ed55b9c65943aa5b146fd58cbac, type: 3}
@@ -13979,7 +14009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1001965868
 Transform:
   m_ObjectHideFlags: 0
@@ -23506,6 +23536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669140860}
   - component: {fileID: 1669140861}
+  - component: {fileID: 1669140862}
   m_Layer: 0
   m_Name: Pot
   m_TagString: Untagged
@@ -23521,7 +23552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669140859}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 2.24, y: 0.58, z: -10.86}
+  m_LocalPosition: {x: -1.29, y: 0, z: -12.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23541,6 +23572,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536aa8d91b8ef654586cb827c1ed55fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1669140862
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669140859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.28
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1669478285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6312096522530054109, guid: 9930d32d7dee1a8489af38d758b092de, type: 3}
@@ -25622,7 +25666,6 @@ GameObject:
   - component: {fileID: 1811519321}
   - component: {fileID: 1811519324}
   - component: {fileID: 1811519323}
-  - component: {fileID: 1811519322}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -25638,27 +25681,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811519320}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39, z: -0.17}
+  m_LocalPosition: {x: 0, y: 1.022, z: -0.384}
   m_LocalScale: {x: 3.4, y: 3.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1669140860}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1811519322
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811519320}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1811519323
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28124,7 +28153,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Witch
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1470229995739088150, guid: 518c3439f3b2c475f9f95367cbdc3142, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1470229995739088145, guid: 518c3439f3b2c475f9f95367cbdc3142, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 518c3439f3b2c475f9f95367cbdc3142, type: 3}
 --- !u!1001 &2015993497
 PrefabInstance:
@@ -29659,7 +29693,6 @@ GameObject:
   - component: {fileID: 2107826746}
   - component: {fileID: 2107826749}
   - component: {fileID: 2107826748}
-  - component: {fileID: 2107826747}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -29675,27 +29708,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107826745}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.69, z: 0}
+  m_LocalPosition: {x: 0, y: 2.66, z: -0.03}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96884727}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &2107826747
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107826745}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2107826748
 MeshRenderer:
   m_ObjectHideFlags: 0
