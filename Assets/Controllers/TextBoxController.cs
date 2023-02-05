@@ -26,6 +26,12 @@ public class TextBoxController : MonoBehaviour
         StartText(dialogData[level].introLines);
     }
 
+    public void SayFirstIngredientDialog(int level)
+    {
+        Debug.Log("SayFirstIngredientDialog");
+        StartText(dialogData[level].firstIngredientLines);
+    }
+
     public void StartText(List<Line> lines)
     {
         TextQueue.Clear();

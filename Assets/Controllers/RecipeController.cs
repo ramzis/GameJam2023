@@ -12,14 +12,12 @@ public class RecipeController : MonoBehaviour
     private void Start()
     {
         if(recipes == null) recipes = new List<RecipeData>();
-        currentRecipeIndex = 0;
+        currentRecipeIndex = -1;
     }
 
-    public RecipeData NextRecipe()
+    public void NextRecipe()
     {
-        if (currentRecipeIndex >= recipes.Count) return null;
-
-        return recipes[currentRecipeIndex++];
+        currentRecipeIndex++;
     }
 
     public RecipeData CurrentRecipe()
