@@ -16,15 +16,19 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] GameObject playerQuad;
     Renderer PlayerQuadMat;
 
+    private TextBoxController textBoxController;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         PlayerQuadMat = playerQuad.GetComponent<Renderer>();
+        textBoxController = FindObjectOfType<TextBoxController>(true);
     }
 
-    void Update()
+    private void Update()
     {
+        if (textBoxController.Busy()) return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 

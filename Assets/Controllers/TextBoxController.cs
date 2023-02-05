@@ -37,7 +37,7 @@ public class TextBoxController : MonoBehaviour
     public IEnumerator SayFirstIngredientDialog(int level)
     {
         yield return new WaitWhile(() => busy);
-        StartText(dialogData[level].firstIngredientLines);
+            StartText(dialogData[level].firstIngredientLines);
     }
 
     public IEnumerator SayCorrectIngredientDialog(int level)
