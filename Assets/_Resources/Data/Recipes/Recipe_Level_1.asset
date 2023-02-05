@@ -15,4 +15,3 @@ MonoBehaviour:
   title: Carrot Potion
   ingredients:
   - {fileID: 11400000, guid: 1e65a241b1148de4288705b2f21d0ef3, type: 2}
-  - {fileID: 11400000, guid: 1e65a241b1148de4288705b2f21d0ef3, type: 2}

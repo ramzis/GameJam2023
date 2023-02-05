@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24568fe5beae042948fcf358e59c0767, type: 3}
   m_Name: Inventory Data
   m_EditorClassIdentifier: 
-  currentCategories:
-  - {fileID: 11400000, guid: 8cb4065a155c94690a868a87bf9ab2ba, type: 2}
-  - {fileID: 11400000, guid: 8cb4065a155c94690a868a87bf9ab2ba, type: 2}
   inventoryCategories1:
-  - {fileID: 11400000, guid: 8cb4065a155c94690a868a87bf9ab2ba, type: 2}
   - {fileID: 11400000, guid: 8cb4065a155c94690a868a87bf9ab2ba, type: 2}
   inventoryCategories2:
   - {fileID: 11400000, guid: 8cb4065a155c94690a868a87bf9ab2ba, type: 2}
