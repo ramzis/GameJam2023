@@ -27,7 +27,7 @@ MonoBehaviour:
     Text: "The second one is the umbrella of the ants (wow, I\u2019m such a poet).
       The orange one, not white. :)"
   - Author: 0
-    Text: "The third one is where the lovers kiss. \U0001F642"
+    Text: The third one is where the lovers kiss.
   - Author: 0
     Text: And the last one is a soft-bodied legless larva of a fly or other insect,
       found in decaying matter.
@@ -41,7 +41,7 @@ MonoBehaviour:
   - Author: 1
     Text: "Here it is: 1 Beetroot, 1 White Mushroom, 1 Birch, and\u2026The last ingredient,
       as the recipe says\u2026 is\u2026 is\u2026 it\u2019s the cutest, smartest creature
-      on this continent. "
+      on this continent."
   - Author: 1
     Text: "He has tiny little feet and baby-soft fur\u2026 Yep\u2026 Do you have
       any idea who could be?"
