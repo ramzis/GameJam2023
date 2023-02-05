@@ -15,7 +15,6 @@ MonoBehaviour:
   title: Worm on the Beach
   ingredients:
   - {fileID: 11400000, guid: 086e1f8561d8f604d962f88d7c64f2b6, type: 2}
-  - {fileID: 11400000, guid: 1e65a241b1148de4288705b2f21d0ef3, type: 2}
+  - {fileID: 11400000, guid: d498fd81aef9981408bebaf96df0a1de, type: 2}
   - {fileID: 11400000, guid: 09a676d59cc8ffb4091cea6273c2eac3, type: 2}
   - {fileID: 11400000, guid: 70afc6196f326f848b92de2c227953be, type: 2}
-  - {fileID: 11400000, guid: a18b0252757a95240ad12b7afbf2c802, type: 2}

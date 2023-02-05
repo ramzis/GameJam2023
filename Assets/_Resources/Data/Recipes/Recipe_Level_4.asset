@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Shroom Shake
   ingredients:
-  - {fileID: 11400000, guid: d498fd81aef9981408bebaf96df0a1de, type: 2}
-  - {fileID: 11400000, guid: d498fd81aef9981408bebaf96df0a1de, type: 2}
-  - {fileID: 11400000, guid: 826b60f2c38a64f21972bdab4412050e, type: 2}
-  - {fileID: 11400000, guid: 826b60f2c38a64f21972bdab4412050e, type: 2}
+  - {fileID: 11400000, guid: 086e1f8561d8f604d962f88d7c64f2b6, type: 2}
+  - {fileID: 11400000, guid: 70afc6196f326f848b92de2c227953be, type: 2}
+  - {fileID: 11400000, guid: 305301cf922ba42f5b879598ae11b6ff, type: 2}

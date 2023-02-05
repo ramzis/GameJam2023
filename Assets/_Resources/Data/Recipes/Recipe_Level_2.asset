@@ -15,5 +15,4 @@ MonoBehaviour:
   title: Tree Brew
   ingredients:
   - {fileID: 11400000, guid: 086e1f8561d8f604d962f88d7c64f2b6, type: 2}
-  - {fileID: 11400000, guid: 3a6e2eda02bce824db0e0bcf5f258c5d, type: 2}
-  - {fileID: 11400000, guid: 305301cf922ba42f5b879598ae11b6ff, type: 2}
+  - {fileID: 11400000, guid: 09a676d59cc8ffb4091cea6273c2eac3, type: 2}

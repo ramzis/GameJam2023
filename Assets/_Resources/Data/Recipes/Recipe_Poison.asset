@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Poison
   ingredients:
-  - {fileID: 11400000, guid: 1e65a241b1148de4288705b2f21d0ef3, type: 2}
-  - {fileID: 11400000, guid: 70afc6196f326f848b92de2c227953be, type: 2}
+  - {fileID: 11400000, guid: 086e1f8561d8f604d962f88d7c64f2b6, type: 2}
   - {fileID: 11400000, guid: 3a6e2eda02bce824db0e0bcf5f258c5d, type: 2}
+  - {fileID: 11400000, guid: 826b60f2c38a64f21972bdab4412050e, type: 2}
+  - {fileID: 11400000, guid: aaa6c2b79f39a8d4c88811a1913582d0, type: 2}
