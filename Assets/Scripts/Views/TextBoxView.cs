@@ -8,22 +8,51 @@ public class TextBoxView : MonoBehaviour
 {
     [SerializeField]
     private RectTransform character;
-    private Sequence inSequence;
-    private Sequence outSequence;
+
+    [SerializeField]
+    private List<Sprite> witch;
+    [SerializeField]
+    private List<Sprite> rabbit;
 
     [SerializeField]
     private RectTransform panel;
 
+    private Sequence inSequence;
+    private Sequence outSequence;
+
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void Show()
     {
+        gameObject.SetActive(true);
         AnimateImageIn();
         AnimatePanelIn();
     }
 
-    public void Hide()
+    public IEnumerator Hide()
     {
         AnimateImageOut();
         AnimatePanelOut();
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
+    }
+
+    public void SwitchSpeaker(Author speaker, int lives)
+    {
+        switch (speaker)
+        {
+            case Author.Witch:
+                character.GetComponent<Image>().sprite = witch[3-lives];
+                break;
+            case Author.Rabbit:
+                character.GetComponent<Image>().sprite = rabbit[0];
+                break;
+            default:
+                break;
+        }
     }
 
     private void AnimateImageIn()

@@ -8,20 +8,15 @@ public class DialogData : ScriptableObject
     [Header("Metadata")]
     public string title = "Dialog";
 
-    [SerializeField]
-    List<Line> introLines;
+    public List<Line> introLines;
 
-    [SerializeField]
-    List<Line> firstIngredientLines;
+    public List<Line> firstIngredientLines;
 
-    [SerializeField]
-    List<Line> correctIngredientLines;
+    public List<Line> correctIngredientLines;
 
-    [SerializeField]
-    List<Line> wrongIngredientLines;
+    public List<Line> wrongIngredientLines;
 
-    [SerializeField]
-    List<Line> outroLines;
+    public List<Line> outroLines;
 }
 
 [Serializable]

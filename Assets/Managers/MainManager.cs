@@ -43,6 +43,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestPoisonRecipe += OnRequestPoisonRecipeHandler;
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
         objectiveController.OnRequestNewCategories += OnRequestNewCategoriesHandler;
+        objectiveController.OnRequestIntroDialog += OnRequestIntroDialogHandler;
 
         witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
         witchController.OnWitchPraiseRecipe += OnWitchPraiseRecipeHandler;
@@ -53,6 +54,7 @@ public class MainManager : MonoBehaviour
         inventoryView.OnItemRemovedAtSlot += OnItemRemovedAtSlotHandler;
 
         textBoxController.OnShowTextBox += OnShowTextBoxHandler;
+        textBoxController.OnSwitchSpeaker += OnSwitchSpeakerHandler;
     }
 
     private void UnsubscribeEvents()
@@ -60,6 +62,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestPoisonRecipe -= OnRequestPoisonRecipeHandler;
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
         objectiveController.OnRequestNewCategories -= OnRequestNewCategoriesHandler;
+        objectiveController.OnRequestIntroDialog -= OnRequestIntroDialogHandler;
 
         witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
         witchController.OnWitchPraiseRecipe -= OnWitchPraiseRecipeHandler;
@@ -70,13 +73,13 @@ public class MainManager : MonoBehaviour
         inventoryView.OnItemRemovedAtSlot -= OnItemRemovedAtSlotHandler;
 
         textBoxController.OnShowTextBox -= OnShowTextBoxHandler;
+        textBoxController.OnSwitchSpeaker -= OnSwitchSpeakerHandler;
     }
 
     #region Objective Handler event handlers
 
     private void OnRequestPoisonRecipeHandler()
     {
-        textBoxController.TestText();
         objectiveController.SetPoisonRecipe(recipeController.PoisonRecipe());
     }
 
@@ -90,6 +93,11 @@ public class MainManager : MonoBehaviour
     private void OnRequestNewCategoriesHandler()
     {
         inventoryController.RequestNextCategories();
+    }
+
+    private void OnRequestIntroDialogHandler(int level)
+    {
+        textBoxController.SayIntroDialog(level);
     }
 
     #endregion
@@ -141,7 +149,13 @@ public class MainManager : MonoBehaviour
     private void OnShowTextBoxHandler(bool show)
     {
         if (show) textBoxView.Show();
-        else textBoxView.Hide();
+        else StartCoroutine(textBoxView.Hide());
+    }
+
+    private void OnSwitchSpeakerHandler(Author speaker)
+    {
+        int lives = objectiveController.GetLives();
+        textBoxView.SwitchSpeaker(speaker, lives);
     }
 
     #endregion

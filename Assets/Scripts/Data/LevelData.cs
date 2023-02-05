@@ -7,5 +7,5 @@ public class LevelData : ScriptableObject
     [Header("Metadata")]
     public string title = "Level";
 
-    public List<DialogData> dialogs;
+    public DialogData dialogs;
 }

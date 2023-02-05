@@ -6,26 +6,33 @@ using System;
 
 public class TextBoxController : MonoBehaviour
 {
+    public List<DialogData> levelData;
     public event Action<bool> OnShowTextBox;
+    public event Action<Author> OnSwitchSpeaker;
 
-    public Queue<string> TextQueue;
+    public Queue<Line> TextQueue;
     public TMP_Text TextPrinter;
+
+    Author lastAuthor = Author.Witch;
+    private bool textBoxVisible;
 
     void Awake()
     {
-        TextQueue = new Queue<string>();
-        StartCoroutine(TypeText());
+        TextQueue = new Queue<Line>();
     }
 
-    public void StartText(string[] newText)
+    public void SayIntroDialog(int level)
     {
-        OnShowTextBox?.Invoke(true);
+        StartText(levelData[level].introLines);
+    }
+
+    public void StartText(List<Line> lines)
+    {
         TextQueue.Clear();
-        foreach (string text in newText)
+        foreach (Line line in lines)
         {
-            TextQueue.Enqueue(text);
+            TextQueue.Enqueue(line);
         }
-        OnShowTextBox?.Invoke(true);
 
         StopAllCoroutines();
         StartCoroutine(TypeText());
@@ -43,8 +50,28 @@ public class TextBoxController : MonoBehaviour
                 continue;
             }
 
-            string str = TextQueue.Dequeue();
-            TextPrinter.text = str;
+            Line line = TextQueue.Dequeue();
+
+            if (lastAuthor != line.Author)
+            {
+                lastAuthor = line.Author;
+                if(textBoxVisible)
+                {
+                    OnShowTextBox?.Invoke(false);
+                    textBoxVisible = false;
+                    yield return new WaitForSecondsRealtime(1f);
+                }
+                OnSwitchSpeaker?.Invoke(line.Author);
+            }
+
+            if(!textBoxVisible)
+            {
+                OnShowTextBox?.Invoke(true);
+                textBoxVisible = true;
+                yield return new WaitForSecondsRealtime(1f);
+            }
+
+            TextPrinter.text = line.Text;
 
             for (int i = 1; i <= TextPrinter.text.Length; i++)
             {
@@ -54,17 +81,5 @@ public class TextBoxController : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(2.5f);
         }
-    }
-
-    public void TestText()
-    {
-        StartText(new string[]{
-            "Hello there, little piggy.",
-            "My full time bartender is out on holidays for 5 days so I’m super thirsty.",
-            "IF YOU KNOW WHAT I MEAN.",
-            "Now you will be my servant!",
-            "If you behave and make good cocktails - I will let you go… ",
-            "If not - death awaits you, little pig!", }
-        );
     }
 }

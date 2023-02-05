@@ -8,6 +8,7 @@ public class ObjectiveController : MonoBehaviour
     public event Action OnRequestNewRecipe;
     public event Action OnRequestPoisonRecipe;
     public event Action OnRequestNewCategories;
+    public event Action<int> OnRequestIntroDialog;
 
     public event Action<int> OnLivesCountChanged;
 
@@ -51,6 +52,11 @@ public class ObjectiveController : MonoBehaviour
         return lastRecipeValid;
     }
 
+    public int GetLives()
+    {
+        return lives;
+    }
+
     private IEnumerator GameLoop()
     {
         Debug.Log("[GameLoop]: Requesting poison recipe");
@@ -60,6 +66,7 @@ public class ObjectiveController : MonoBehaviour
         {
             Debug.Log("[GameLoop]: Requesting recipe");
             OnRequestNewRecipe?.Invoke();
+            OnRequestIntroDialog?.Invoke(level-1);
 
             lastRecipeValid = false;
             potionProvided = false;
