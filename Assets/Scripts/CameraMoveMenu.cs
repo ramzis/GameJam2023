@@ -27,6 +27,8 @@ public class CameraMoveMenu : MonoBehaviour
     {
         //Rotation change amount per one call
         rotationAmountPerChange = amountToRotate / ((maxCordOffsetX + (minCordOffsetX * -1)) / movingSpeed);
+
+        //Kinda sus but it works
         cameraTransform = GetComponent<Transform>();
 
         //Execute method 32 times per second (>30 fps for fluency)
