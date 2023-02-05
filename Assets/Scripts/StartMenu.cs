@@ -9,6 +9,15 @@ public class StartMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    public void Menu()
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 
     public void QuitGame()
     {
