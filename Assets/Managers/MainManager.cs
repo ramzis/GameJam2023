@@ -115,6 +115,7 @@ public class MainManager : MonoBehaviour
         var ingredients = inventoryController.GetIngredients();
         var correct = objectiveController.EvaluateRecipe(ingredients);
         witchController.EvaluateRecipe(correct);
+        inventoryController.EmptyInventory();
     }
 
     private void OnWitchPraiseRecipeHandler()
