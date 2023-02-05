@@ -21,7 +21,7 @@ MonoBehaviour:
     Text: Get me some proteins! Get them to me, even if they try to wriggle away.
   - Author: 0
     Text: "For the second ingredient, I will take something red with a lot of calcium.
-      But let\u2019s make it vegan now. \U0001F642"
+      But let\u2019s make it vegan now."
   - Author: 0
     Text: "And then - something from the one who\u2019s naked and ugly."
   firstIngredientLines:
