@@ -20,24 +20,18 @@ public class TextBoxView : MonoBehaviour
     private Sequence inSequence;
     private Sequence outSequence;
 
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
-
     public void Show()
     {
-        gameObject.SetActive(true);
+        Debug.Log("Showing");
         AnimateImageIn();
         AnimatePanelIn();
     }
 
-    public IEnumerator Hide()
+    public void Hide()
     {
+        Debug.Log("Hiding");
         AnimateImageOut();
         AnimatePanelOut();
-        yield return new WaitForSeconds(1);
-        gameObject.SetActive(false);
     }
 
     public void SwitchSpeaker(Author speaker, int lives)
