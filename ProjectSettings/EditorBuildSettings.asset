@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: 59de76c77dac72541a77a9e4ac4b4281
   - enabled: 1
-    path: Assets/Scenes/Eimos/SampleScene.unity
-    guid: ea235891ea37d3b43a51ce9ddda432a4
+    path: Assets/Scenes/Eimos/Content.unity
+    guid: 7c0d9be82c5966648bca779a09a727c9
   - enabled: 1
     path: Assets/Scenes/VictoryScreen.unity
     guid: 114e8b1f024c7ea459eb469dede92181

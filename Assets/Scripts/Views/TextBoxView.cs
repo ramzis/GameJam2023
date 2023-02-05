@@ -37,6 +37,7 @@ public class TextBoxView : MonoBehaviour
         switch (speaker)
         {
             case Author.Witch:
+                if (lives < 1) lives = 1;
                 character.GetComponent<Image>().sprite = witch[3-lives];
                 break;
             case Author.Rabbit:
