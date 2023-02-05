@@ -112,23 +112,22 @@ public class MainManager : MonoBehaviour
 
     private void OnRequestIntroDialogHandler(int level)
     {
-        textBoxController.SayIntroDialog(level);
+        StartCoroutine(textBoxController.SayIntroDialog(level));
     }
 
     private void OnRequestFirstIngredientDialogHandler(int level)
     {
-        textBoxController.SayFirstIngredientDialog(level);
+        StartCoroutine(textBoxController.SayFirstIngredientDialog(level));
     }
 
     private void OnRequestCorrectIngredientDialogHandler(int level)
     {
-        Debug.Log("OnRequestCorrectIngredientDialogHandler");
-        textBoxController.SayCorrectIngredientDialog(level);
+        StartCoroutine(textBoxController.SayCorrectIngredientDialog(level));
     }
 
     private void OnRequestWrongIngredientDialogHandler(int level)
     {
-        textBoxController.SayWrongIngredientDialog(level);
+        StartCoroutine(textBoxController.SayWrongIngredientDialog(level));
     }
 
     #endregion

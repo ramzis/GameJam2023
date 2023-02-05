@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
@@ -16,85 +16,80 @@ public class TextBoxController : MonoBehaviour
     Author lastAuthor = Author.Witch;
     private bool textBoxVisible;
 
+    private bool busy;
+
+    public bool Busy()
+    {
+        return busy;
+    }
+
     void Awake()
     {
         TextQueue = new Queue<Line>();
     }
 
-    public void SayIntroDialog(int level)
+    public IEnumerator SayIntroDialog(int level)
     {
+        yield return new WaitWhile(() => busy);
         StartText(dialogData[level].introLines);
     }
 
-    public void SayFirstIngredientDialog(int level)
+    public IEnumerator SayFirstIngredientDialog(int level)
     {
+        yield return new WaitWhile(() => busy);
         StartText(dialogData[level].firstIngredientLines);
     }
 
-    public void SayCorrectIngredientDialog(int level)
+    public IEnumerator SayCorrectIngredientDialog(int level)
     {
-        Debug.Log("SayCorrectIngredientDialog");
+        yield return new WaitWhile(() => busy);
         StartText(dialogData[level].correctIngredientLines);
     }
 
-    public void SayWrongIngredientDialog(int level)
+    public IEnumerator SayWrongIngredientDialog(int level)
     {
-        Debug.Log("SayWrongIngredientDialog");
+        yield return new WaitWhile(() => busy);
         StartText(dialogData[level].wrongIngredientLines);
     }
 
-    public void StartText(List<Line> lines)
+    private void StartText(List<Line> lines)
     {
-        TextQueue.Clear();
-        foreach (Line line in lines)
-        {
-            TextQueue.Enqueue(line);
-        }
+        busy = true;
 
-        StopAllCoroutines();
+        TextQueue.Clear();
+        foreach (Line line in lines) TextQueue.Enqueue(line);
+
         StartCoroutine(TypeText());
     }
 
-    IEnumerator TypeText()
+    private IEnumerator TypeText()
     {
         while (true)
         {
+            // If all text is read, exit
             if (TextQueue.Count < 1)
             {
                 TextPrinter.text = "";
-                yield return new WaitForSecondsRealtime(1f);
 
-                if (textBoxVisible)
-                {
-                    OnShowTextBox?.Invoke(false);
-                    textBoxVisible = false;
-                }
+                yield return HideBox();
 
-                continue;
+                break;
             }
 
+            // Read by line
             Line line = TextQueue.Dequeue();
 
+            // Switch images for authors
             if (lastAuthor != line.Author)
             {
                 lastAuthor = line.Author;
 
-                if(textBoxVisible)
-                {
-                    OnShowTextBox?.Invoke(false);
-                    textBoxVisible = false;
-                    yield return new WaitForSecondsRealtime(1f);
-                }
+                yield return HideBox();
 
                 OnSwitchSpeaker?.Invoke(line.Author);
             }
 
-            if(!textBoxVisible)
-            {
-                OnShowTextBox?.Invoke(true);
-                textBoxVisible = true;
-                yield return new WaitForSecondsRealtime(1f);
-            }
+            yield return ShowBox();
 
             TextPrinter.text = line.Text;
 
@@ -106,5 +101,29 @@ public class TextBoxController : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(2.5f);
         }
+
+        busy = false;
+    }
+
+    private IEnumerator HideBox()
+    {
+        if (textBoxVisible)
+        {
+            OnShowTextBox?.Invoke(false);
+            textBoxVisible = false;
+            yield return new WaitForSecondsRealtime(1f);
+        }
+    }
+
+    private IEnumerator ShowBox()
+    {
+        if (!textBoxVisible)
+        {
+            OnShowTextBox?.Invoke(true);
+            textBoxVisible = true;
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
     }
 }
+
+
