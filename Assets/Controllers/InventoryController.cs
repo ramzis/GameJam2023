@@ -17,6 +17,7 @@ public class InventoryController : MonoBehaviour
         itemCollector = FindObjectOfType<ItemCollector>(true);
         itemCollector.OnItemCollected += OnItemCollectedHandler;
         inventoryData.OnCategoriesUpdated += OnCategoriesUpdatedHandler;
+        FindObjectOfType<Interactor>(true)?.ProvideInventory(inventoryData);
     }
 
     private void OnDisable()

@@ -5,6 +5,7 @@ public class Interactor : MonoBehaviour
     private Collider[] hitColliders;
 
     private TextBoxController textBoxController;
+    private InventoryData inventoryData;
 
     private void Start()
     {
@@ -17,6 +18,9 @@ public class Interactor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // Prevent actions with a not full inventory
+            if (inventoryData != null && !inventoryData.InventoryFull()) return;
+
             hitColliders = Physics.OverlapSphere(transform.position, 2f);
             foreach (var hitCollider in hitColliders)
             {
@@ -26,5 +30,10 @@ public class Interactor : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void ProvideInventory(InventoryData inventoryData)
+    {
+        this.inventoryData = inventoryData;
     }
 }

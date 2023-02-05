@@ -97,4 +97,13 @@ public class InventoryData : ScriptableObject
             TryRemoveItem(i);
         }
     }
+
+    public bool InventoryFull()
+    {
+        int count = 0;
+        for(int i=0; i<currentItems.Length; i++)
+            if (currentItems[i] != null) count++;
+
+        return count == inventories[currentCategories].Length;
+    }
 }
