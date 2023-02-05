@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveController : MonoBehaviour
 {
@@ -137,6 +138,7 @@ public class ObjectiveController : MonoBehaviour
     private IEnumerator PoisonCutscene()
     {
         Debug.Log("[GameLoop]: You poisoned the witch!");
+        SceneManager.LoadScene("VictoryScreen");
         yield return null;
     }
 
@@ -149,12 +151,14 @@ public class ObjectiveController : MonoBehaviour
     private IEnumerator EarlyGameOver()
     {
         Debug.Log("[GameLoop]: The witch got angry and ate you!");
+        SceneManager.LoadScene("DefeatScreen");
         yield return null;
     }
 
     private IEnumerator GameOver()
     {
         Debug.Log("[GameLoop]: You did well, but the witch still ate you!");
+        SceneManager.LoadScene("DefeatScreen");
         yield return null;
     }
 }
