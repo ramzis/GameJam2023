@@ -66,7 +66,7 @@ public class ObjectiveController : MonoBehaviour
         if (firstValidIngredientFound) return;
 
         firstValidIngredientFound = true;
-        OnRequestFirstIngredientDialog?.Invoke(level);
+        OnRequestFirstIngredientDialog?.Invoke(level-1);
     }
 
     private IEnumerator GameLoop()
