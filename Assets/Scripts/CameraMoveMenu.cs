@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class CameraMoveMenu : MonoBehaviour
 {
+    //Cords for max x / z
     private float maxCordOffsetX = 15.0f;
     private float minCordOffsetX = -15.0f;
     private float maxCordOffsetZ = 15.0f;
     private float minCordOffsetZ = -50.0f;
 
-    private float amountToRotate = 20.0f;
+    //Camera rotation variables
+    private float amountToRotate = 30.0f;
     private float rotationAmountPerChange;
 
+    //Camera moving speed
     private float movingSpeed = 0.15f;
 
+    //Boolean to determine whether camera reached end of terrain
     private bool reachedXZEnd = false;
 
     private Transform cameraTransform;
@@ -21,11 +25,14 @@ public class CameraMoveMenu : MonoBehaviour
 
     void Start()
     {
+        //Rotation change amount per one call
         rotationAmountPerChange = amountToRotate / ((maxCordOffsetX + (minCordOffsetX * -1)) / movingSpeed);
         cameraTransform = GetComponent<Transform>();
 
+        //Execute method 32 times per second (>30 fps for fluency)
         InvokeRepeating("ExecuteMethod", 0, 0.03125f);
 
+        //Initial camera position
         cameraTransform.transform.position = new Vector3(minCordOffsetX, cameraTransform.position.y, cameraTransform.position.z);
     }
 

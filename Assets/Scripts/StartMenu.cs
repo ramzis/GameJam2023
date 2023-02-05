@@ -7,7 +7,7 @@ public class StartMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        //SceneManager.LoadScene("Screen Name From Builder");
+        SceneManager.LoadScene("Main");
     }
 
     public void QuitGame()
@@ -15,3 +15,4 @@ public class StartMenu : MonoBehaviour
         Application.Quit();
     }
 }
+
