@@ -13,7 +13,7 @@ public class ObjectiveController : MonoBehaviour
 
     private RecipeData currentRecipe;
     private RecipeData poisonRecipe;
-    private int lives = 10;
+    private int lives = 3;
     private int level = 1;
 
     private bool lastRecipeValid;

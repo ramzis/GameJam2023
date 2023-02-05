@@ -42,6 +42,11 @@ public class InventoryController : MonoBehaviour
         return new HashSet<ItemData>(inventoryData.currentItems);
     }
 
+    public void EmptyInventory()
+    {
+        inventoryData.EmptyInventory();
+    }
+
     public void RequestNextCategories()
     {
         inventoryData.NextCategories();

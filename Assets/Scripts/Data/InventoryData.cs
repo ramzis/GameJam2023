@@ -88,4 +88,13 @@ public class InventoryData : ScriptableObject
     {
         return inventories[currentCategories];
     }
+
+    public void EmptyInventory()
+    {
+        for(int i=0; i<currentItems.Length; i++)
+        {
+            if (currentItems[i] == null) continue;
+            TryRemoveItem(i);
+        }
+    }
 }
