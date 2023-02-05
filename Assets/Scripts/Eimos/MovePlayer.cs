@@ -38,12 +38,13 @@ public class MovePlayer : MonoBehaviour
             || Input.GetKey(KeyCode.D))
         {
             SoundManagerScript.PlaySound("walking");
-            playerQuad.transform.rotation = Quaternion.Euler(45, Mathf.Cos(Time.time * 10) * 20, 0);
+            
+            playerQuad.transform.localRotation = Quaternion.Euler(45, Mathf.Cos(Time.time * 10) * 20, 0);
         }
         else
         {
             SoundManagerScript.PlaySound("stop_walking");
-            playerQuad.transform.rotation = Quaternion.Euler(45, 0, 0);
+            playerQuad.transform.localRotation = Quaternion.Euler(45, 0, 0);
         }
 
 
