@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36a6b5b72908440588c59ec483c067d, type: 3}
+  m_Name: Dialog Data 1
+  m_EditorClassIdentifier: 
+  title: Dialog
+  introLines: []
+  firstIngredientLines:
+  - Author: 1
+    Text: 'Oh, my! You have a carrot! Gimme, gimme! '
+  - Author: 0
+    Text: 'Come here or I will end you! '
+  - Author: 1
+    Text: "Oh\u2026 You\u2019d better go and gain her trust! And later\u2026"
+  - Author: 1
+    Text: I will help you kill her. ;)
+  correctIngredientLines:
+  - Author: 0
+    Text: "Oh my, yummy, yummy. Good job! You can go rest now! 5 more days and you
+      will be free, little piggy! Hehehehe\u2026"
+  wrongIngredientLines:
+  - Author: 0
+    Text: "WHAT THE HELL IS THIS? What a horrible bartender! You will get away with
+      it this time, but my patience has its limits\u2026"
+  outroLines:
+  - Author: 0
+    Text: 'GOODNIGHT. :)  '
