@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27995,13 +27995,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Eimantas Vinci\u016Bans \u2013 programming, level design\nTadas Audinis
-    \u2013 programming, UX\nVidmantas Saulius Aleksi\u016Bnas \u2013 programming\n\nGabija
+  m_text: "Eimantas Vinci\u016Bnas \u2013 programming, level design\nTadas Audinis
+    \u2013 programming, UI\nVidmantas Saulius Aleksi\u016Bnas \u2013 programming\n\nGabija
     Rogo\u017Eait\u0117 \u2013 2D art, character design\n\u017Dilvinas Bra\u017Eukas
     \u2013 2D art\nSalvija Vai\u010Dikonyt\u0117 \u2013 2D art\nOsvaldas Vilutis
     \u2013 2D art\n\nDeimant\u0117 Karpavi\u010Di\u016Bt\u0117 \u2013 scriptwriting,
     game design\nMigl\u0117 Dama\u0161evi\u010Di\u016Bt\u0117 \u2013 scriptwriting\n\nAlexander
-    Elensky \u2013 audio\n"
+    Elensky \u2013 audio"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -28028,10 +28028,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 25.65
   m_fontSizeBase: 22
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
