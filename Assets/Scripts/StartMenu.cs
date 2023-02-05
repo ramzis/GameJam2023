@@ -11,6 +11,7 @@ public class StartMenu : MonoBehaviour
     }
     public void Menu()
     {
+        Debug.Log("Start screen");
         SceneManager.LoadScene("StartScreen");
     }
 
