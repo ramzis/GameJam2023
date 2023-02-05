@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922ab59545f28409dab53ae329511dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData:
+  dialogData:
   - {fileID: 11400000, guid: 20f1ef18251a24e88b1e013cf7d11c79, type: 2}
   - {fileID: 11400000, guid: 276530f0542224023ae5b5ff32bd6ccf, type: 2}
   - {fileID: 11400000, guid: 075745a9af5f0497caba4c5d644395e1, type: 2}

@@ -22,6 +22,8 @@ public class Witch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        Debug.Log("Interacting with witch @ " + state);
+
         switch (state)
         {
             case State.HandingOutRecipe:
@@ -68,12 +70,16 @@ public class Witch : MonoBehaviour, IInteractable
 
     private IEnumerator PraiseRecipe()
     {
+        state = State.Brewing;
+
         // TODO: proper text for each recipe
         var text = "WITCH: You did well...this time!";
 
         Debug.Log(text);
 
         OnWitchPraiseRecipe?.Invoke();
+
+        state = State.HandingOutRecipe;
 
         yield return null;
     }
@@ -84,6 +90,8 @@ public class Witch : MonoBehaviour, IInteractable
         var text = "WITCH: You fool! This is not what I asked for!";
 
         Debug.Log(text);
+
+        state = State.HandingOutRecipe;
 
         yield return null;
     }

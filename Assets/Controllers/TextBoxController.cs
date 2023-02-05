@@ -6,7 +6,7 @@ using System;
 
 public class TextBoxController : MonoBehaviour
 {
-    public List<DialogData> levelData;
+    public List<DialogData> dialogData;
     public event Action<bool> OnShowTextBox;
     public event Action<Author> OnSwitchSpeaker;
 
@@ -23,7 +23,7 @@ public class TextBoxController : MonoBehaviour
 
     public void SayIntroDialog(int level)
     {
-        StartText(levelData[level].introLines);
+        StartText(dialogData[level].introLines);
     }
 
     public void StartText(List<Line> lines)
@@ -46,7 +46,13 @@ public class TextBoxController : MonoBehaviour
             {
                 TextPrinter.text = "";
                 yield return new WaitForSecondsRealtime(1f);
-                OnShowTextBox?.Invoke(false);
+
+                if (textBoxVisible)
+                {
+                    OnShowTextBox?.Invoke(false);
+                    textBoxVisible = false;
+                }
+
                 continue;
             }
 
@@ -55,12 +61,14 @@ public class TextBoxController : MonoBehaviour
             if (lastAuthor != line.Author)
             {
                 lastAuthor = line.Author;
+
                 if(textBoxVisible)
                 {
                     OnShowTextBox?.Invoke(false);
                     textBoxVisible = false;
                     yield return new WaitForSecondsRealtime(1f);
                 }
+
                 OnSwitchSpeaker?.Invoke(line.Author);
             }
 
