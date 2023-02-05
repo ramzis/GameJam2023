@@ -28,8 +28,6 @@ MonoBehaviour:
   - Author: 0
     Text: "The second one is to wash my mouth - I need it fresh! You know the rest\u2026"
   - Author: 0
-    Text: "The second one is to wash my mouth - I need it fresh! You know the rest\u2026"
-  - Author: 0
     Text: "Go take some juice from where the lovers like to hide\u2026 And sometimes
       Mowgli likes to climb."
   - Author: 0
@@ -55,4 +53,4 @@ MonoBehaviour:
       this, but my patience has its limits\u2026"
   outroLines:
   - Author: 0
-    Text: 'GOODNIGHT. :)  '
+    Text: GOODNIGHT. :)

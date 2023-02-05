@@ -15,14 +15,14 @@ MonoBehaviour:
   title: Dialog
   introLines:
   - Author: 0
-    Text: 'Oh - la - la, what a day! I feel kinda dizzy today. '
+    Text: Oh - la - la, what a day! I feel kinda dizzy today.
   - Author: 0
     Text: I need to get on feet before Kids Kidnapping Festival today.
   - Author: 0
     Text: Get me some proteins! Get them to me, even if they try to wringle away.
   - Author: 0
     Text: "For the second ingredient I will take something red and with a lot of
-      calcium. But let\u2019s make it vegan now. \U0001F642"
+      calcium. But let\u2019s make it vegan now."
   - Author: 0
     Text: "And then - something from the one who\u2019s naked and ugly."
   firstIngredientLines: []
@@ -36,4 +36,4 @@ MonoBehaviour:
       it this time, but my patience has its limits\u2026"
   outroLines:
   - Author: 0
-    Text: 'GOODNIGHT. :)  '
+    Text: GOODNIGHT. :)
