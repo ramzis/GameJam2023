@@ -149,7 +149,7 @@ public class MainManager : MonoBehaviour
     private void OnShowTextBoxHandler(bool show)
     {
         if (show) textBoxView.Show();
-        else StartCoroutine(textBoxView.Hide());
+        else textBoxView.Hide();
     }
 
     private void OnSwitchSpeakerHandler(Author speaker)

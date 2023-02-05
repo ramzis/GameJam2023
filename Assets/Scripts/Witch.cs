@@ -22,8 +22,6 @@ public class Witch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Interacting with witch @ " + state);
-
         switch (state)
         {
             case State.HandingOutRecipe:
