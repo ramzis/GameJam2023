@@ -44,6 +44,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewRecipe += OnRequestNewRecipeHandler;
         objectiveController.OnRequestNewCategories += OnRequestNewCategoriesHandler;
         objectiveController.OnRequestIntroDialog += OnRequestIntroDialogHandler;
+        objectiveController.OnRequestFirstIngredientDialog += OnRequestFirstIngredientDialogHandler;
         objectiveController.OnLivesCountChanged += OnLivesCountChangedHandler;
 
         witchController.OnRequestEvaluateRecipe += OnRequestEvaluateRecipeHandler;
@@ -64,6 +65,7 @@ public class MainManager : MonoBehaviour
         objectiveController.OnRequestNewRecipe -= OnRequestNewRecipeHandler;
         objectiveController.OnRequestNewCategories -= OnRequestNewCategoriesHandler;
         objectiveController.OnRequestIntroDialog -= OnRequestIntroDialogHandler;
+        objectiveController.OnRequestFirstIngredientDialog -= OnRequestFirstIngredientDialogHandler;
         objectiveController.OnLivesCountChanged -= OnLivesCountChangedHandler;
 
         witchController.OnRequestEvaluateRecipe -= OnRequestEvaluateRecipeHandler;
@@ -80,20 +82,21 @@ public class MainManager : MonoBehaviour
 
     #region Objective Handler event handlers
 
+    private void OnRequestPoisonRecipeHandler()
+    {
+        objectiveController.SetPoisonRecipe(recipeController.PoisonRecipe());
+    }
+
     private void OnLivesCountChangedHandler(int lives)
     {
         var witchRender = FindObjectOfType<RenderWitch>();
         witchRender.SetMoodImg(lives);
     }
 
-    private void OnRequestPoisonRecipeHandler()
-    {
-        objectiveController.SetPoisonRecipe(recipeController.PoisonRecipe());
-    }
-
     private void OnRequestNewRecipeHandler()
     {
-        var recipe = recipeController.NextRecipe();
+        recipeController.NextRecipe();
+        var recipe = recipeController.CurrentRecipe();
         objectiveController.SetCurrentRecipe(recipe);
         witchController.ProvideCurrentRecipe(recipe);
     }
@@ -108,6 +111,12 @@ public class MainManager : MonoBehaviour
         textBoxController.SayIntroDialog(level);
     }
 
+    private void OnRequestFirstIngredientDialogHandler(int level)
+    {
+        Debug.Log("OnRequestFirstIngredientDialogHandler");
+        textBoxController.SayFirstIngredientDialog(level);
+    }
+
     #endregion
 
     #region Inventory Controller event handlers
@@ -115,6 +124,9 @@ public class MainManager : MonoBehaviour
     private void OnItemCollectedHandler(ItemData item, int insertedAt)
     {
         inventoryView.SetSlotThumbnail(insertedAt, item.thumbnail);
+        var recipe = recipeController.CurrentRecipe();
+        if(recipe.ingredients.Contains(item))
+            objectiveController.NotifyIngredientCollected(item);
     }
 
     #endregion

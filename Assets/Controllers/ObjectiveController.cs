@@ -9,6 +9,7 @@ public class ObjectiveController : MonoBehaviour
     public event Action OnRequestPoisonRecipe;
     public event Action OnRequestNewCategories;
     public event Action<int> OnRequestIntroDialog;
+    public event Action<int> OnRequestFirstIngredientDialog;
 
     public event Action<int> OnLivesCountChanged;
 
@@ -20,6 +21,7 @@ public class ObjectiveController : MonoBehaviour
     private bool lastRecipeValid;
     private bool potionProvided;
     private bool poisonProvided;
+    private bool firstValidIngredientFound;
 
     private void Start()
     {
@@ -57,6 +59,14 @@ public class ObjectiveController : MonoBehaviour
         return lives;
     }
 
+    public void NotifyIngredientCollected(ItemData item)
+    {
+        if (firstValidIngredientFound) return;
+
+        firstValidIngredientFound = true;
+        OnRequestFirstIngredientDialog?.Invoke(level);
+    }
+
     private IEnumerator GameLoop()
     {
         Debug.Log("[GameLoop]: Requesting poison recipe");
@@ -71,6 +81,7 @@ public class ObjectiveController : MonoBehaviour
             lastRecipeValid = false;
             potionProvided = false;
             poisonProvided = false;
+            firstValidIngredientFound = false;
 
             yield return new WaitUntil(() => potionProvided);
 
