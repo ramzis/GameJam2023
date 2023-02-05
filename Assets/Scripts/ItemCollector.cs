@@ -9,13 +9,18 @@ public class ItemCollector : MonoBehaviour, ICollector
 
     private List<IHarvestable> nearbyHarvestables;
 
+    private TextBoxController textBoxController;
+
     private void Start()
     {
         nearbyHarvestables = new List<IHarvestable>();
+        textBoxController = FindObjectOfType<TextBoxController>(true);
     }
 
     private void Update()
     {
+        if (textBoxController.Busy()) return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SetHarvesting(true);
