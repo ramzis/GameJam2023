@@ -139,8 +139,15 @@ public class MainManager : MonoBehaviour
     private void OnItemCollectedHandler(ItemData item, int insertedAt)
     {
         inventoryView.SetSlotThumbnail(insertedAt, item.thumbnail);
-        var recipe = recipeController.CurrentRecipe();
-        if(recipe.ingredients.Contains(item))
+
+        var level = objectiveController.GetLevel();
+        RecipeData recipe;
+        if(level < 5)
+            recipe = recipeController.CurrentRecipe();
+        else
+            recipe = recipeController.PoisonRecipe();
+
+        if (recipe.ingredients.Contains(item))
             objectiveController.NotifyIngredientCollected(item);
     }
 

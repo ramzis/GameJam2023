@@ -62,6 +62,11 @@ public class ObjectiveController : MonoBehaviour
         return lives;
     }
 
+    public int GetLevel()
+    {
+        return level;
+    }
+
     public void NotifyIngredientCollected(ItemData item)
     {
         if (firstValidIngredientFound) return;
