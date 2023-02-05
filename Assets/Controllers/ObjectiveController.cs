@@ -83,11 +83,17 @@ public class ObjectiveController : MonoBehaviour
                 {
                     yield return SleepCutscene();
                 }
-                else if (--lives < 1)
+
+                else
                 {
+                    --lives;
                     OnLivesCountChanged?.Invoke(lives);
-                    StartCoroutine(EarlyGameOver());
-                    yield break;
+                    if (lives < 1)
+                    {
+                        
+                        StartCoroutine(EarlyGameOver());
+                        yield break;
+                    }
                 }
             }
             // Last level
