@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(InventoryController))]
 [RequireComponent(typeof(ObjectiveController))]
 [RequireComponent(typeof(WitchController))]
+[RequireComponent(typeof(TextBoxController))]
 public class MainManager : MonoBehaviour
 {
     // 1. Receive recipe
@@ -14,9 +15,12 @@ public class MainManager : MonoBehaviour
     private InventoryController inventoryController;
     private ObjectiveController objectiveController;
     private WitchController witchController;
+    private TextBoxController textBoxController;
 
     [SerializeField]
     private InventoryView inventoryView;
+    [SerializeField]
+    private TextBoxView textBoxView;
 
     private void Awake()
     {
@@ -31,6 +35,7 @@ public class MainManager : MonoBehaviour
         inventoryController = GetComponent<InventoryController>();
         objectiveController = GetComponent<ObjectiveController>();
         witchController = GetComponent<WitchController>();
+        textBoxController = GetComponent<TextBoxController>();
     }
 
     private void SubscribeEvents()
@@ -46,6 +51,8 @@ public class MainManager : MonoBehaviour
         inventoryController.OnCategoriesUpdated += OnCategoriesUpdatedHandler;
 
         inventoryView.OnItemRemovedAtSlot += OnItemRemovedAtSlotHandler;
+
+        textBoxController.OnShowTextBox += OnShowTextBoxHandler;
     }
 
     private void UnsubscribeEvents()
@@ -61,12 +68,15 @@ public class MainManager : MonoBehaviour
         inventoryController.OnCategoriesUpdated -= OnCategoriesUpdatedHandler;
 
         inventoryView.OnItemRemovedAtSlot -= OnItemRemovedAtSlotHandler;
+
+        textBoxController.OnShowTextBox -= OnShowTextBoxHandler;
     }
 
     #region Objective Handler event handlers
 
     private void OnRequestPoisonRecipeHandler()
     {
+        textBoxController.TestText();
         objectiveController.SetPoisonRecipe(recipeController.PoisonRecipe());
     }
 
@@ -122,6 +132,16 @@ public class MainManager : MonoBehaviour
     {
         var ingredients = inventoryController.GetIngredients();
         witchController.BrewPotion(ingredients);
+    }
+
+    #endregion
+
+    #region Text Box Controller event handlers
+
+    private void OnShowTextBoxHandler(bool show)
+    {
+        if (show) textBoxView.Show();
+        else textBoxView.Hide();
     }
 
     #endregion
