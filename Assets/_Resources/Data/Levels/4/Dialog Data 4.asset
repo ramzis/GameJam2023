@@ -15,17 +15,25 @@ MonoBehaviour:
   title: Dialog
   introLines:
   - Author: 0
-    Text: Oh - la - la, what a day! I feel kinda dizzy today.
+    Text: "Ooh l\xE0 l\xE0, what a day! I feel kinda dizzy today. I need to get on
+      my feet before the Kids Kidnapping Festival today."
   - Author: 0
-    Text: I need to get on feet before Kids Kidnapping Festival today.
+    Text: Get me some proteins! Get them to me, even if they try to wriggle away.
   - Author: 0
-    Text: Get me some proteins! Get them to me, even if they try to wringle away.
-  - Author: 0
-    Text: "For the second ingredient I will take something red and with a lot of
-      calcium. But let\u2019s make it vegan now."
+    Text: "For the second ingredient, I will take something red with a lot of calcium.
+      But let\u2019s make it vegan now. \U0001F642"
   - Author: 0
     Text: "And then - something from the one who\u2019s naked and ugly."
-  firstIngredientLines: []
+  firstIngredientLines:
+  - Author: 1
+    Text: Hey, friend! Remember what I said about killing the Witch?
+  - Author: 1
+    Text: Soo... I heard the beaver has the most accurate poison recipe in the world,
+      and I will go for it tonight!
+  - Author: 1
+    Text: "Let\u2019s hope you aren't in her belly by then\u2026"
+  - Author: 1
+    Text: And as for this potion, I would try some mushrooms!
   correctIngredientLines:
   - Author: 0
     Text: "Oh my, yummy, yummy. Good job! You can go rest now! 5 more days and you

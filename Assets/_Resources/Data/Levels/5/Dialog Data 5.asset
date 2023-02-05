@@ -15,31 +15,35 @@ MonoBehaviour:
   title: Dialog
   introLines:
   - Author: 0
-    Text: "As I promised, it\u2019s your last day. You will suffer no more. Ahh\u2026
-      So sad\u2026 I get so sentimental\u2026"
+    Text: "As I promised, it\u2019s your last day.  Ahh\u2026 So sad\u2026 I think
+      we became pretty good friends, right? If my last cocktail is good - you\u2019re
+      free."
   - Author: 0
-    Text: "But if you fail - I WILL KILL YOU. Sorry, Witch rules\u2026"
+    Text: If you fail - you die, my friend...
   - Author: 0
-    Text: First ingredient is easy - cherry but not a cherry, bug but not a bug,
-      soup but not a soup - yes.
+    Text: Okay! The first ingredient is easy - cherry but not a cherry, bug but not
+      a bug, soup but not a soup - yes.
   - Author: 0
-    Text: "Second one is the umbrella of the ants (wow, I\u2019m such a poet)."
+    Text: "The second one is the umbrella of the ants (wow, I\u2019m such a poet).
+      The orange one, not white. :)"
   - Author: 0
-    Text: "And the last one is: of course, it\u2019s where the lovers kiss."
+    Text: "The third one is where the lovers kiss. \U0001F642"
   - Author: 0
-    Text: GO, MY SLAVE!
+    Text: And the last one is a soft-bodied legless larva of a fly or other insect,
+      found in decaying matter.
+  - Author: 0
+    Text: GO, MY SLAVE FRIEND!
   firstIngredientLines:
   - Author: 1
-    Text: Hey, piggy! I have some great news! I found the full recipe for the poison,
-      yay yay yayyyy!
+    Text: "Hey, piggy! I have some great news! The beaver gave me the full recipe
+      for the poison, yay yay yayyyy! Now, let\u2019s kill that ugly Witch and run
+      awayyyy\u2026"
   - Author: 1
-    Text: "Let\u2019s kill that ugly Witch and run awayyyy\u2026"
+    Text: "Here it is: 1 Beetroot, 1 White Mushroom, 1 Birch, and\u2026The last ingredient,
+      as the recipe says\u2026 is\u2026 is\u2026 it\u2019s the cutest, smartest creature
+      on this continent. "
   - Author: 1
-    Text: "1 Beetroot, 1 White Mushroom, 1 Ber\u017Eas and\u2026The last ingredient,
-      as the recipe says\u2026 is\u2026 is\u2026 it\u2019s the cutest, the most smart
-      creature in this continent."
-  - Author: 1
-    Text: "He has little tiny feet and baby soft fur\u2026 Yep\u2026 Do you have
+    Text: "He has tiny little feet and baby-soft fur\u2026 Yep\u2026 Do you have
       any idea who could be?"
   correctIngredientLines:
   - Author: 0

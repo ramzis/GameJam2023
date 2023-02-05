@@ -21,26 +21,26 @@ MonoBehaviour:
   - Author: 0
     Text: "Your task today is to make me a beauty potion\u2026"
   - Author: 0
-    Text: "As my heart is black and I want to feel love today, I need to dye it to
-      the color of the real one\u2026"
+    Text: "As my heart is black and I want to feel some love today, I need to dye
+      it to the color of the real one\u2026"
   - Author: 0
     Text: So the first ingredient will be for that.
   - Author: 0
     Text: "The second one is to wash my mouth - I need it fresh! You know the rest\u2026"
   - Author: 0
-    Text: "Go take some juice from where the lovers like to hide\u2026 And sometimes
+    Text: "Go and take some juice from where the lovers like to hide\u2026 And sometimes
       Mowgli likes to climb."
   - Author: 0
     Text: GO!!!
   firstIngredientLines:
   - Author: 1
-    Text: Hey! I wanna help!
+    Text: Hey! I want to help you!
   - Author: 1
-    Text: The symbol of love is definitely a flower!
+    Text: I heard the sap of that red tree can dye things.
   - Author: 1
-    Text: You want to kill the witch?
+    Text: Because it died itself!
   - Author: 1
-    Text: "She will never let you go\u2026"
+    Text: "Ha, ha! I\u2019m so clever! Let\u2019s try that one\u2026"
   - Author: 1
     Text: " Kill her and let\u2019s run away!"
   correctIngredientLines:
@@ -50,7 +50,7 @@ MonoBehaviour:
   wrongIngredientLines:
   - Author: 0
     Text: "WHAT THE HELL IS THIS? What a horrible bartender! You will get away with
-      this, but my patience has its limits\u2026"
+      it this time, but my patience has its limits\u2026"
   outroLines:
   - Author: 0
     Text: GOODNIGHT. :)

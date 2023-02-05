@@ -15,30 +15,29 @@ MonoBehaviour:
   title: Dialog
   introLines:
   - Author: 0
-    Text: 'Hello there, little piggy. '
+    Text: Hello there, little piggy.
   - Author: 0
-    Text: "My full time bartender is out on holidays for 5 days so I\u2019m super
-      thirsty."
+    Text: "My full-time bartender is on vacation for 5 days so I\u2019m super thirsty."
   - Author: 0
-    Text: ' IF YOU KNOW WHAT I MEAN.'
+    Text: IF YOU KNOW WHAT I MEAN.
   - Author: 0
-    Text: " Now you will be my servant! If you behave and make good cocktails - I
-      will let you go\u2026 "
+    Text: "Now you will be my servant! If you behave and make good cocktails - I
+      will let you go\u2026"
   - Author: 0
-    Text: 'If not - death awaits you, little pig! '
+    Text: If not - death awaits you, little pig!
   - Author: 0
     Text: 'My first order will be simple. But as I am the poet of these woods, I
-      will give it in a riddle:'
+      will give all of my ingredients in a shape of riddles:'
   - Author: 0
-    Text: "Summer came and Olaf melted\u2026 HE\u2019S DEAD, HAHAHAHA!"
+    Text: "Summer came and Olaf melted\u2026 HE\u2019S DEAD, HAHAHAHA! But\u2026
+      one part of his body is still here\u2026 "
   - Author: 0
-    Text: "But\u2026 one part of his body is still here\u2026 Find it and bring it
-      to me! GO!"
+    Text: Find it and bring it to me! GO!
   firstIngredientLines:
   - Author: 1
-    Text: 'Oh, my! You have a carrot! Gimme, gimme! '
+    Text: Oh, my! You have a carrot! Gimme, gimme!
   - Author: 0
-    Text: 'Come here or I will end you! '
+    Text: Come here or I will end you!
   - Author: 1
     Text: "Oh\u2026 You\u2019d better go and gain her trust! And later\u2026"
   - Author: 1
