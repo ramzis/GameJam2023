@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Linq;
 
 public class TextBoxController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class TextBoxController : MonoBehaviour
     public event Action<bool> OnShowTextBox;
     public event Action<Author> OnSwitchSpeaker;
 
-    public Queue<Line> TextQueue;
+    public Queue<List<Line>> TextQueue;
     public TMP_Text TextPrinter;
 
     Author lastAuthor = Author.Witch;
@@ -25,60 +26,67 @@ public class TextBoxController : MonoBehaviour
 
     void Awake()
     {
-        TextQueue = new Queue<Line>();
+        TextQueue = new Queue<List<Line>>();
+    }
+
+    private List<Line> lines;
+    private void LateUpdate()
+    {
+        if(!busy)
+        {
+            if (TextQueue.TryDequeue(out lines))
+            {
+                busy = true;
+                StartCoroutine(SayLines(lines));
+            }
+            else if(textBoxVisible)
+            {
+                TextPrinter.text = "";
+                StartCoroutine(HideBox());
+            }
+        }
     }
 
     public IEnumerator SayIntroDialog(int level)
     {
-        yield return new WaitWhile(() => busy);
-        StartText(dialogData[level].introLines);
+        lock(TextQueue)
+        {
+            TextQueue.Enqueue(dialogData[level].introLines);
+        }
+        yield return null;
     }
 
     public IEnumerator SayFirstIngredientDialog(int level)
     {
-        yield return new WaitWhile(() => busy);
-            StartText(dialogData[level].firstIngredientLines);
+        lock (TextQueue)
+        {
+            TextQueue.Enqueue(dialogData[level].firstIngredientLines);
+        }
+        yield return null;
     }
 
     public IEnumerator SayCorrectIngredientDialog(int level)
     {
-        yield return new WaitWhile(() => busy);
-        StartText(dialogData[level].correctIngredientLines);
+        lock (TextQueue)
+        {
+            TextQueue.Enqueue(dialogData[level].correctIngredientLines);
+        }
+        yield return null;
     }
 
     public IEnumerator SayWrongIngredientDialog(int level)
     {
-        yield return new WaitWhile(() => busy);
-        StartText(dialogData[level].wrongIngredientLines);
-    }
-
-    private void StartText(List<Line> lines)
-    {
-        busy = true;
-
-        TextQueue.Clear();
-        foreach (Line line in lines) TextQueue.Enqueue(line);
-
-        StartCoroutine(TypeText());
-    }
-
-    private IEnumerator TypeText()
-    {
-        while (true)
+        lock (TextQueue)
         {
-            // If all text is read, exit
-            if (TextQueue.Count < 1)
-            {
-                TextPrinter.text = "";
+            TextQueue.Enqueue(dialogData[level].wrongIngredientLines);
+        }
+        yield return null;
+    }
 
-                yield return HideBox();
-
-                break;
-            }
-
-            // Read by line
-            Line line = TextQueue.Dequeue();
-
+    private IEnumerator SayLines(List<Line> lines)
+    {
+        foreach(var line in lines)
+        {
             // Switch images for authors
             if (lastAuthor != line.Author)
             {
