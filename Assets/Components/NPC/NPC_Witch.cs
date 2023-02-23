@@ -15,22 +15,16 @@ public class NPC_Witch : NPC
 
     private Mood currentMood;
 
-    private void Start()
+    private new void Awake()
     {
-        Init();
-    }
-
-    public override void Interact()
-    {
-        Debug.Log("[NPC_Witch]: Interacting");
-        SetNextMood();
-    }
-
-    private void Init()
-    {
+        base.Awake();
         if (textures == null || textures.Count < 1)
             textures = new List<Texture>() { GetDefaultTexture() };
+    }
 
+    private new void Start()
+    {
+        base.Start();
         SetMood(Mood.Happy);
     }
 
@@ -43,5 +37,10 @@ public class NPC_Witch : NPC
     private void SetNextMood()
     {
         SetMood((Mood)(((int)currentMood + 1) % textures.Count));
+    }
+
+    public override void Interact()
+    {
+        SetNextMood();
     }
 }

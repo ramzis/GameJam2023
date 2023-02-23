@@ -7,7 +7,9 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
     private new Renderer renderer;
 
-    private void Awake()
+    private NPCController npcController;
+
+    protected void Awake()
     {
         renderer = GetComponentInChildren<Renderer>();
         if(!renderer)
@@ -16,7 +18,29 @@ public abstract class NPC : MonoBehaviour, IInteractable
                 $"{gameObject.name} requires Renderer!"
             );
         }
+
+        npcController = FindObjectOfType<NPCController>(true);
+        if (!npcController)
+        {
+            Debug.LogWarning($"[{gameObject.name}]: No NPCController found!");
+        }
+    }
+
+    private void OnDisable()
+    {
+        if(!npcController)
+        {
+            Debug.LogWarning($"[{gameObject.name}]: No NPCController found!");
+            return;
+        }
+
+        npcController.Unregister(this);
+    }
+
+    protected void Start()
+    {
         SetTexture(GetDefaultTexture());
+        npcController?.Register(this);
     }
 
     protected Texture GetDefaultTexture()
