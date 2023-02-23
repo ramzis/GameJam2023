@@ -27,7 +27,7 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        if (textBoxController.Busy()) return;
+        //if (textBoxController.Busy()) return;
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");

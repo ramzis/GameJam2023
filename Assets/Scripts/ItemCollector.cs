@@ -19,7 +19,7 @@ public class ItemCollector : MonoBehaviour, ICollector
 
     private void Update()
     {
-        if (textBoxController.Busy()) return;
+        //if (textBoxController.Busy()) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

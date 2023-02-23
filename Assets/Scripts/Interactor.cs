@@ -14,7 +14,7 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        if (textBoxController.Busy()) return;
+        //if (textBoxController.Busy()) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
