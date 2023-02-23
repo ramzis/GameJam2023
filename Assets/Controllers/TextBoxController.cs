@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
-using System.Linq;
 
 public class TextBoxController : MonoBehaviour
 {
@@ -47,40 +46,36 @@ public class TextBoxController : MonoBehaviour
         }
     }
 
-    public IEnumerator SayIntroDialog(int level)
+    public void SayIntroDialog(int level)
     {
         lock(TextQueue)
         {
             TextQueue.Enqueue(dialogData[level].introLines);
         }
-        yield return null;
     }
 
-    public IEnumerator SayFirstIngredientDialog(int level)
+    public void SayFirstIngredientDialog(int level)
     {
         lock (TextQueue)
         {
             TextQueue.Enqueue(dialogData[level].firstIngredientLines);
         }
-        yield return null;
     }
 
-    public IEnumerator SayCorrectIngredientDialog(int level)
+    public void SayCorrectIngredientDialog(int level)
     {
         lock (TextQueue)
         {
             TextQueue.Enqueue(dialogData[level].correctIngredientLines);
         }
-        yield return null;
     }
 
-    public IEnumerator SayWrongIngredientDialog(int level)
+    public void SayWrongIngredientDialog(int level)
     {
         lock (TextQueue)
         {
             TextQueue.Enqueue(dialogData[level].wrongIngredientLines);
         }
-        yield return null;
     }
 
     private IEnumerator SayLines(List<Line> lines)
@@ -133,5 +128,3 @@ public class TextBoxController : MonoBehaviour
         }
     }
 }
-
-
