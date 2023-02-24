@@ -15,6 +15,11 @@ public class NPCController : MonoBehaviour
         InteractRandomly();
     }
 
+    private void OnDisable()
+    {
+        npcs.Clear();
+    }
+
     private void InteractRandomly()
     {
         if (Time.frameCount % 60 != 0) return;
@@ -33,6 +38,13 @@ public class NPCController : MonoBehaviour
 
     public void Unregister(NPC npc)
     {
+        Debug.Log($"[NPCController]: Unregistering {npc.name}");
         npcs.Remove(npc);
+    }
+
+    public void NotifyEvent(NPC npc, string message)
+    {
+        Debug.Log($"[NPCController]: ({npc.name}) says: {message}");
+        npc.ReceiveMessage("GOTCHA!");
     }
 }

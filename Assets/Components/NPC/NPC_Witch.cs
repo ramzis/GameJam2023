@@ -32,6 +32,7 @@ public class NPC_Witch : NPC
     {
         currentMood = mood;
         SetTexture(textures[(int)mood % textures.Count]);
+        NotifyEvent($"I am now {mood}");
     }
 
     private void SetNextMood()
@@ -42,5 +43,10 @@ public class NPC_Witch : NPC
     public override void Interact()
     {
         SetNextMood();
+    }
+
+    public override void ReceiveMessage(string message)
+    {
+        Debug.Log($"[NPC_Witch] Received: {message}");
     }
 }

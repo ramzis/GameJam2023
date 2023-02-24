@@ -28,13 +28,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
     private void OnDisable()
     {
-        if(!npcController)
-        {
-            Debug.LogWarning($"[{gameObject.name}]: No NPCController found!");
-            return;
-        }
-
-        npcController.Unregister(this);
+        npcController?.Unregister(this);
     }
 
     protected void Start()
@@ -53,5 +47,12 @@ public abstract class NPC : MonoBehaviour, IInteractable
         renderer.material.mainTexture = texture;
     }
 
+    protected void NotifyEvent(string message)
+    {
+        npcController.NotifyEvent(this, message);
+    }
+
     public abstract void Interact();
+
+    public abstract void ReceiveMessage(string message);
 }
