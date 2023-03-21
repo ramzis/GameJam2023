@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Item : MonoBehaviour, IHarvestable, IInteractable
+public class Item : MonoBehaviour, IHarvestable
 {
     private EventListeners<Item> eventListeners;
 
@@ -167,6 +167,7 @@ public class Item : MonoBehaviour, IHarvestable, IInteractable
                 {
                     SoundManagerScript.PlaySound("success");
                     collector.Collect(data);
+                    eventListeners.RaiseEvent(new HarvestedEvent(data));
                     SetState(State.Empty);
                 }
                 break;
@@ -237,9 +238,4 @@ public class Item : MonoBehaviour, IHarvestable, IInteractable
     }
 
     #endregion
-
-    public void Interact()
-    {
-        eventListeners.RaiseEvent(new HarvestedEvent(data));
-    }
 }
