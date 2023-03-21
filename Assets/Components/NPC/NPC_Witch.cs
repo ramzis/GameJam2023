@@ -115,6 +115,7 @@ public partial class NPC_Witch : NPC
             case "Get ready for Objective 1":
             {
                 SetMood(Mood.Happy);
+                Interact();
                 break;
             }
         }   
