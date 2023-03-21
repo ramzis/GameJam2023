@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactor : MonoBehaviour
@@ -19,13 +20,15 @@ public class Interactor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Prevent actions with a not full inventory
-            if (inventoryData != null && !inventoryData.InventoryFull()) return;
+            //if (inventoryData != null && !inventoryData.InventoryFull()) return; // TODO: reenable
 
             hitColliders = Physics.OverlapSphere(transform.position, 2f);
             foreach (var hitCollider in hitColliders)
             {
                 IInteractable interactable = hitCollider.GetComponent<IInteractable>();
-                if (interactable == null) continue;
+                IItemReceiver receiver = hitCollider.GetComponent<IItemReceiver>();
+                if (interactable == null && receiver == null) continue;
+                receiver?.ReceiveItems(new List<ItemData>()); // TODO: pass real items
                 interactable?.Interact();
                 break;
             }
