@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class TextBoxController : MonoBehaviour
+public class TextBoxController : MonoBehaviour, IListen<NPCController>
 {
     public List<DialogData> dialogData;
     public event Action<bool> OnShowTextBox;
@@ -126,5 +126,44 @@ public class TextBoxController : MonoBehaviour
             textBoxVisible = true;
             yield return new WaitForSecondsRealtime(0.5f);
         }
+    }
+
+    public (List<int>, Action<dynamic>) HandleEvent(NPCController component, IEvent<NPCController> @event)
+    {
+        return @event switch
+        {
+            NPCController.Event_Say e => (
+                new List<int>() { 100 },
+                (payload) =>
+                {
+                    string[] tokens = payload.Split(".");
+                    var character = tokens[1];
+                    var message = tokens[3];
+                    switch(message)
+                    {
+                        case "intro":
+                        {
+                            var id = tokens[4];
+                            SayIntroDialog(int.Parse(id));
+                            break;
+                        }
+                        case "valid_recipe":
+                        {
+                            var id = tokens[4];
+                            SayCorrectIngredientDialog(int.Parse(id));
+                            break;
+                        }
+                        case "invalid_recipe":
+                        {
+                            var id = tokens[4];
+                            SayWrongIngredientDialog(int.Parse(id));
+                            break;
+                        }
+                    }
+
+                }
+            ),
+            _ => (null, null)
+        };
     }
 }
