@@ -26,13 +26,11 @@ public abstract class NPC : MonoBehaviour, IInteractable, IItemReceiver
 
     private void OnDisable()
     {
-        //npcRegister?.Unregister(this);
     }
 
     protected void Start()
     {
         SetTexture(GetDefaultTexture());
-        //npcRegister?.Register(this);
     }
 
     protected Texture GetDefaultTexture()
@@ -48,8 +46,6 @@ public abstract class NPC : MonoBehaviour, IInteractable, IItemReceiver
     protected void NotifyEvent(string message)
     {
         Debug.Log($"[NPC]: ({name}) says: {message}");
-
-        //npcRegister.NotifyEvent(this, message);
     }
 
     public abstract void Interact();
