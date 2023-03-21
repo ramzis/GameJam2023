@@ -39,6 +39,20 @@ public class Item : MonoBehaviour, IHarvestable, IInteractable
         Sap
     }
 
+    public class Event_ChangeHarvestingState : IEvent<Item>
+    {
+        private bool harvesting;
+
+        public Event_ChangeHarvestingState(bool harvesting = false)
+        {
+            this.harvesting = harvesting;
+        }
+
+        public string GetName() => "Event_ChangeHarvestingState";
+
+        public dynamic GetPayload() => harvesting;
+    }
+
     public class HarvestedEvent : IEvent<Item>
     {
         private ItemData data;
@@ -61,6 +75,7 @@ public class Item : MonoBehaviour, IHarvestable, IInteractable
     private void Start()
     {
         eventListeners.RegisterEvent(new HarvestedEvent());
+        eventListeners.RegisterEvent(new Event_ChangeHarvestingState());
     }
 
     public void OnTriggerEnter(Collider other)
@@ -101,7 +116,7 @@ public class Item : MonoBehaviour, IHarvestable, IInteractable
                 underground.SetActive(false);
                 pulled.SetActive(false);
                 hole.SetActive(true);
-                GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false; // cringe
+                eventListeners.RaiseEvent(new Event_ChangeHarvestingState(false));
                 GetComponent<SphereCollider>().center = new Vector3(0,-100,0); // yeet the trigger away.
                 break;
 
@@ -129,12 +144,7 @@ public class Item : MonoBehaviour, IHarvestable, IInteractable
     public void Harvest(bool harvesting)
     {
         this.harvesting = harvesting;
-
-        if(harvesting)
-            GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = true;
-        else
-            GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
-
+        eventListeners.RaiseEvent(new Event_ChangeHarvestingState(harvesting));
 
         switch (state)
         {
@@ -196,19 +206,16 @@ public class Item : MonoBehaviour, IHarvestable, IInteractable
 
     private void StopDigging()
     {
-        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         quadAnimation.StopDigging();
     }
 
     private void DigUp() // invokes after 5 seconds if not canceled
     {
-        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         SetState(State.Pulled);
     }
 
     private void Sap()
     {
-        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().isKinematic = false;
         StopDigging();
         SetState(State.Sap);
     }
