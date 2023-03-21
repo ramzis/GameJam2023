@@ -13,6 +13,8 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
     public Queue<List<Line>> TextQueue;
     public TMP_Text TextPrinter;
 
+    public TextBoxView textBoxView;
+
     Author lastAuthor = Author.Witch;
     private bool textBoxVisible;
 
@@ -103,6 +105,7 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
                 yield return HideBox();
 
                 OnSwitchSpeaker?.Invoke(line.Author);
+                textBoxView.SwitchSpeaker(line.Author, 0); // TODO: restore mood
             }
 
             yield return ShowBox();
@@ -126,6 +129,7 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
         if (textBoxVisible)
         {
             OnShowTextBox?.Invoke(false);
+            textBoxView.Hide();
             textBoxVisible = false;
             yield return new WaitForSecondsRealtime(1f);
             eventListeners.RaiseEvent(new Event_ToggleTextBox(false));
@@ -138,6 +142,7 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
         {
             eventListeners.RaiseEvent(new Event_ToggleTextBox(true));
             OnShowTextBox?.Invoke(true);
+            textBoxView.Show();
             textBoxVisible = true;
             yield return new WaitForSecondsRealtime(0.5f);
         }

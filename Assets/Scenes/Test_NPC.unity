@@ -573,6 +573,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b20576a9f8164e14b49e1eab13a2134, type: 2}
   - {fileID: 11400000, guid: cde6cdd118d9d4cd69d53a0ecb7af144, type: 2}
   TextPrinter: {fileID: 2145192196}
+  textBoxView: {fileID: 478191020}
 --- !u!1001 &1248363973
 PrefabInstance:
   m_ObjectHideFlags: 0
