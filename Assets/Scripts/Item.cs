@@ -1,8 +1,10 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Item : MonoBehaviour, IHarvestable
+public class Item : MonoBehaviour, IHarvestable, IInteractable
 {
+    private EventListeners<Item> eventListeners;
+
     [SerializeField]
     private ItemData data;
 
@@ -35,6 +37,30 @@ public class Item : MonoBehaviour, IHarvestable
         Empty,
         Tree,
         Sap
+    }
+
+    public class HarvestedEvent : IEvent<Item>
+    {
+        private ItemData data;
+
+        public HarvestedEvent(ItemData data = null)
+        {
+            this.data = data;
+        }
+
+        public string GetName() => "HarvestedEvent";
+
+        public dynamic GetPayload() => data;
+    }
+
+    private void Awake()
+    {
+        eventListeners = new EventListeners<Item>(this);
+    }
+
+    private void Start()
+    {
+        eventListeners.RegisterEvent(new HarvestedEvent());
     }
 
     public void OnTriggerEnter(Collider other)
@@ -204,4 +230,9 @@ public class Item : MonoBehaviour, IHarvestable
     }
 
     #endregion
+
+    public void Interact()
+    {
+        eventListeners.RaiseEvent(new HarvestedEvent(data));
+    }
 }
