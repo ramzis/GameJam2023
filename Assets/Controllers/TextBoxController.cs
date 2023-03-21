@@ -18,6 +18,8 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
 
     private bool busy;
 
+    protected EventListeners<TextBoxController> eventListeners;
+
     public bool Busy()
     {
         return busy;
@@ -26,6 +28,12 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
     void Awake()
     {
         TextQueue = new Queue<List<Line>>();
+        eventListeners = new EventListeners<TextBoxController>(this);
+    }
+
+    private void Start()
+    {
+        RegisterEvents();
     }
 
     private List<Line> lines;
@@ -44,6 +52,11 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
                 StartCoroutine(HideBox());
             }
         }
+    }
+
+    private void RegisterEvents()
+    {
+        eventListeners.RegisterEvent(new Event_ToggleTextBox());
     }
 
     public void SayIntroDialog(int level)
@@ -115,6 +128,7 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
             OnShowTextBox?.Invoke(false);
             textBoxVisible = false;
             yield return new WaitForSecondsRealtime(1f);
+            eventListeners.RaiseEvent(new Event_ToggleTextBox(false));
         }
     }
 
@@ -122,6 +136,7 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
     {
         if (!textBoxVisible)
         {
+            eventListeners.RaiseEvent(new Event_ToggleTextBox(true));
             OnShowTextBox?.Invoke(true);
             textBoxVisible = true;
             yield return new WaitForSecondsRealtime(0.5f);
@@ -165,5 +180,19 @@ public class TextBoxController : MonoBehaviour, IListen<NPCController>
             ),
             _ => (null, null)
         };
+    }
+
+    public class Event_ToggleTextBox : IEvent<TextBoxController>
+    {
+        private bool active;
+
+        public Event_ToggleTextBox(bool active = false)
+        {
+            this.active = active;
+        }
+
+        public string GetName() => "Event_ToggleTextBox";
+
+        public dynamic GetPayload() => active;
     }
 }

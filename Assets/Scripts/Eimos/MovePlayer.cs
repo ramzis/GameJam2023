@@ -14,6 +14,8 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] GameObject playerQuad;
     Renderer PlayerQuadMat;
 
+    private bool movementLocked;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,8 +24,9 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        ProcessWalking();
+        if (movementLocked) return;
         ProcessRotation();
+        ProcessWalking();
         ProcessAnimation();
         ProcessSound();
     }
@@ -105,6 +108,14 @@ public class MovePlayer : MonoBehaviour
         else
         {
             SoundManagerScript.PlaySound("stop_walking");
+        }
+    }
+
+    public void LockMovement(bool locked)
+    {
+        lock(rb)
+        {
+            movementLocked = locked;
         }
     }
 }
