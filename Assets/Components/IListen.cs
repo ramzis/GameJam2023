@@ -41,6 +41,7 @@ public class EventListeners<C> where C: Component
 
     public void RaiseEvent(IEvent<C> @event)
     {
+        Debug.Log($"[EVENT] {@event.GetName()}: {@event.GetPayload()}");
         if (handlerMap.TryGetValue(@event.GetName(), out var handlers))
         {
             foreach (var (_, handler) in handlers)
