@@ -5,17 +5,18 @@ public class Interactor : MonoBehaviour
 {
     private Collider[] hitColliders;
 
-    private TextBoxController textBoxController;
     private InventoryData inventoryData;
+
+    private bool interactionLocked;
 
     private void Start()
     {
-        textBoxController = FindObjectOfType<TextBoxController>(true);
+        interactionLocked = false;
     }
 
     private void Update()
     {
-        //if (textBoxController.Busy()) return;
+        if (interactionLocked) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -38,5 +39,13 @@ public class Interactor : MonoBehaviour
     public void ProvideInventory(InventoryData inventoryData)
     {
         this.inventoryData = inventoryData;
+    }
+
+    public void LockInteraction(bool locked)
+    {
+        lock (this)
+        {
+            interactionLocked = locked;
+        }
     }
 }
