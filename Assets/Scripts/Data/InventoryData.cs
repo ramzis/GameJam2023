@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryData : ScriptableObject
 {
     public event Action<CategoryData[]> OnCategoriesUpdated;
+    public event Action<ItemData[]> OnItemDataUpdated;
 
     [SerializeField]
     private CategoryData[] inventoryCategories1;
@@ -23,7 +24,7 @@ public class InventoryData : ScriptableObject
     private int currentCategories;
     private List<CategoryData[]> inventories;
 
-    public void OnEnable()
+    public void Reset()
     {
         currentCategories = 0;
 
@@ -32,13 +33,11 @@ public class InventoryData : ScriptableObject
             null, null, null, null, null
         };
 
-        inventories = new List<CategoryData[]> {
-            inventoryCategories1,
-            inventoryCategories2,
-            inventoryCategories3,
-            inventoryCategories4,
-            inventoryCategories5,
-        };
+        inventories = new List<CategoryData[]>();
+        inventories.Add(inventoryCategories1);
+
+        OnCategoriesUpdated?.Invoke(CurrentCategories());
+        OnItemDataUpdated?.Invoke(currentItems);
     }
 
     // Attempts to find an empty matching category slot based on the current
@@ -48,6 +47,8 @@ public class InventoryData : ScriptableObject
     {
         Debug.Log("[InventoryData:TryAddItem] Looking for room in inventory");
 
+        if (inventories == null) Debug.Log("Null inventories");
+
         // Search for an empty category slot and fill
         for (int i = 0; i < inventories[currentCategories].Length; i++)
         {
@@ -56,6 +57,7 @@ public class InventoryData : ScriptableObject
 
             currentItems[i] = item;
             Debug.Log("[InventoryData:TryAddItem] Added to inventory");
+            OnItemDataUpdated?.Invoke(currentItems);
             return i;
         }
 
@@ -84,7 +86,7 @@ public class InventoryData : ScriptableObject
         OnCategoriesUpdated?.Invoke(inventories[currentCategories]);
     }
 
-    public CategoryData[] CurrentCategories()
+    private CategoryData[] CurrentCategories()
     {
         return inventories[currentCategories];
     }

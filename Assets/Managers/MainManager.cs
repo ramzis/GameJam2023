@@ -162,7 +162,7 @@ public class MainManager : MonoBehaviour
 
     private void OnCategoriesUpdatedHandler(CategoryData[] categories)
     {
-        inventoryView.RegenerateInventory();
+        //inventoryView.RegenerateInventory();
     }
 
     #endregion

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    public event Action<ItemData, int> OnItemCollected;
-    public event Action<CategoryData[]> OnCategoriesUpdated;
-
     [SerializeField]
     private InventoryData inventoryData;
 
@@ -26,11 +23,15 @@ public class InventoryController : MonoBehaviour
         inventoryData.OnCategoriesUpdated -= OnCategoriesUpdatedHandler;
     }
 
+    private void Start()
+    {
+        inventoryData.Reset();
+    }
+
     private void OnItemCollectedHandler(ItemData item)
     {
         Debug.Log("[InventoryController:CollectItem] Collected item");
         var insertedAt = inventoryData.TryAddItem(item);
-        if(insertedAt >= 0) OnItemCollected?.Invoke(item, insertedAt);
     }
 
     public void RemoveItemAtSlot(int slot)

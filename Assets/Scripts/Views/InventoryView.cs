@@ -18,12 +18,18 @@ public class InventoryView : MonoBehaviour
     private void Awake()
     {
         slots = new List<Slot>();
-        RegenerateInventory();
+        inventoryData.OnCategoriesUpdated += OnCategoriesUpdatedHandler;
+        inventoryData.OnItemDataUpdated += OnItemDataUpdatedHandler;
     }
 
-    // RegenerateInventory should only be called only with an empty inventory.
-    // It will adjust the visible slot count and reset them to be empty.
-    public void RegenerateInventory()
+    private void OnDisable()
+    {
+        if (inventoryData == null) return;
+        inventoryData.OnCategoriesUpdated -= OnCategoriesUpdatedHandler;
+        inventoryData.OnItemDataUpdated -= OnItemDataUpdatedHandler;
+    }
+
+    public void RegenerateInventory(CategoryData[] categories)
     {
         for(int i=0; i<slots.Count; i++)
         {
@@ -34,9 +40,10 @@ public class InventoryView : MonoBehaviour
 
         slots.Clear();
 
-        for(int i=0; i<inventoryData.CurrentCategories().Length; i++)
+        // Create slots
+        for(int i=0; i<categories.Length; i++)
         {
-            var category = inventoryData.CurrentCategories()[i];
+            var category = categories[i];
 
             Debug.Log($"[InventoryView:RegenerateInventory] Adding slot for {category.category}");
 
@@ -47,13 +54,33 @@ public class InventoryView : MonoBehaviour
 
             var slot = clone.GetComponent<Slot>();
             slot.ProvideData(category.slotPlaceholder);
-            slot.SetState(Slot.State.Empty);
             slot.OnRemoveButtonPressed += OnRemoveButtonPressedHandler(i);
+            slot.SetState(Slot.State.Empty);
             slot.gameObject.SetActive(true);
             slots.Add(slot);
         }
     }
 
+    private void PopulateInventory(ItemData[] itemData)
+    {
+        // Populate slots
+        for (int i = 0; i < slots.Count; i++)
+        {
+            var slot = slots[i];
+            if (itemData[i] == null)
+            {
+                slot.SetState(Slot.State.Empty);
+            }
+            else
+            {
+                slot.SetThumbnail(itemData[i].thumbnail);
+                slot.SetState(Slot.State.Full);
+            }
+
+        }
+    }
+
+    // TODO: remove, obsolete
     // Sets the visible item for a full slot
     public void SetSlotThumbnail(int slot, Sprite thumbnail)
     {
@@ -85,5 +112,15 @@ public class InventoryView : MonoBehaviour
     private Action OnRemoveButtonPressedHandler(int slot)
     {
         return () => RemoveItemAtSlot(slot);
+    }
+
+    private void OnItemDataUpdatedHandler(ItemData[] itemData)
+    {
+        PopulateInventory(itemData);
+    }
+
+    private void OnCategoriesUpdatedHandler(CategoryData[] categories)
+    {
+        RegenerateInventory(categories);
     }
 }
